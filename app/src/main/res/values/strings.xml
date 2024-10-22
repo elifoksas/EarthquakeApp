@@ -1,55 +1,7 @@
 <resources>
     <string name="app_name">EarthquakeApp</string>
-
     <string name="Earthquakes">Earthquakes</string>
     <string name="Emergency">Emergency</string>
-
-
-    <!-- Settings Strings -->
     <string name="Settings">Settings</string>
-    <string name="SettingsCategoryNotifications">Notifications</string>
-    <string name="SettingsCategoryMaps">Maps</string>
-    <string name="SettingsCategoryFilter">Filter the Earthquake List</string>
-    <string name="SettingsCategoryOther">Other</string>
 
-
-    <!-- Maps Type Values -->
-    <integer-array name="MapsTypeEntryValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </integer-array>
-
-    <string-array name="MapsTypeEntries">
-        <item>Normal</item>
-        <item>Terrain</item>
-        <item>Satellite</item>
-    </string-array>
-
-    <!-- Magnitude Filter Values -->
-    <string-array name="MagnitudeFilterEntries">
-        <item>All magnitude</item>
-        <item>1+</item>
-        <item>2+</item>
-        <item>3+</item>
-        <item>4+</item>
-        <item>5+</item>
-        <item>6+</item>
-        <item>7+</item>
-        <item>8+</item>
-        <item>9+</item>
-    </string-array>
-
-    <string-array name="MagnitudeFilterEntryValues">
-        <item>All magnitude</item>
-        <item>1+</item>
-        <item>2+</item>
-        <item>3+</item>
-        <item>4+</item>
-        <item>5+</item>
-        <item>6+</item>
-        <item>7+</item>
-        <item>8+</item>
-        <item>9+</item>
-    </string-array>
 </resources>

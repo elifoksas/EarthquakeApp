@@ -34,5 +34,20 @@
         <action
             android:id="@+id/action_emergencyFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_emergencyFragment_to_whistleFragment"
+            app:destination="@id/whistleFragment" />
+        <action
+            android:id="@+id/action_emergencyFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/whistleFragment"
+        android:name="com.techgeeksclub.earthquake.ui.fragment.WhistleFragment"
+        android:label="fragment_whistle"
+        tools:layout="@layout/fragment_whistle" />
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.techgeeksclub.earthquake.ui.fragment.InformationFragment"
+        android:label="InformationFragment" />
 </navigation>
