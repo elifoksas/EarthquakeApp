@@ -49,47 +49,23 @@ class EarthquakeAdapter (var mContext: Context, var earthquakeList: Earthquake, 
 
     }
 
-    private fun formatToHourMinute(dateTime: String?): String {
+    private fun formatToHourMinute(dateTime : String): String {
+        val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
 
-        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
-            return "-"   // veya "Bilinmiyor"
-        }
-
-        return try {
-            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
-            val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-
-            val date = inputFormat.parse(dateTime)
-            if (date != null) {
-                outputFormat.format(date)
-            } else {
-                "-"
-            }
-
-        } catch (e: Exception) {
-            "-"
-        }
+        val date = inputFormat.parse(dateTime)
+        return outputFormat.format(date)
     }
 
-    private fun calculateMinutesPassed(dateTime: String?): String {
+    private fun calculateMinutesPassed(dateTime: String): String{
+        val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
+        val currentDate = Date()
+        val startDate = inputFormat.parse(dateTime)
+        val difference = currentDate.time - startDate.time
 
-        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
-            return "-"   // veri yoksa UI'da ne göstermek istiyorsan
-        }
+        val differenceInMinutes = Math.abs(difference / (60 * 1000))
 
-        return try {
-            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
-            val startDate = inputFormat.parse(dateTime) ?: return "-"
-            val currentDate = Date()
-
-            val difference = currentDate.time - startDate.time
-            val differenceInMinutes = kotlin.math.abs(difference / (60 * 1000))
-
-            formatTimeDifference(differenceInMinutes)
-
-        } catch (e: Exception) {
-            "-"
-        }
+        return  formatTimeDifference(differenceInMinutes)// toplam milisaniye farkını dakika olarak hesaplar
     }
 
     private fun formatTimeDifference(minutes : Long) : String {
