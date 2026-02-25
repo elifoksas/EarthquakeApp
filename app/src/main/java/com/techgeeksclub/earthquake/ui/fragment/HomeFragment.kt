@@ -168,8 +168,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding.magTV.text = earthquakeInfo.mag.toString()
         binding.depthTV.text = earthquakeInfo.depth.toString()
         binding.countryTV.text = earthquakeInfo.title.toString()
-        val minutesPassed = calculateMinutesPassed(earthquakeInfo.date.toString())
-        binding.minutesPassedTV.text = "$minutesPassed ago"
+        val minutesPassed = calculateMinutesPassed(earthquakeInfo.date)
+        binding.minutesPassedTV.text = if (minutesPassed == "-") "-" else "$minutesPassed ago"
 
         // Show info window
         binding.recyclerView.visibility = View.GONE
@@ -183,8 +183,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding.magTV.text = item.mag.toString()
         binding.depthTV.text = item.depth.toString()
         binding.countryTV.text = item.title.toString()
-        val minutesPassed = calculateMinutesPassed(item.date.toString())
-        binding.minutesPassedTV.text = "$minutesPassed ago"
+        val minutesPassed = calculateMinutesPassed(item.date)
+        binding.minutesPassedTV.text = if (minutesPassed == "-") "-" else "$minutesPassed ago"
 
         // Focus the map on the location of the clicked item
         val latitude = item.geojson?.coordinates?.get(1) ?: 0.0
@@ -210,15 +210,22 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         return (result[0] / 1000).toLong() // m to km
     }
 
-    private fun calculateMinutesPassed(dateTime: String): String{
-        val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
-        val currentDate = Date()
-        val startDate = inputFormat.parse(dateTime)
-        val difference = currentDate.time - startDate.time
+    private fun calculateMinutesPassed(dateTime: String?): String {
+        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
+            return "-"
+        }
 
-        val differenceInMinutes = Math.abs(difference / (60 * 1000))
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
+            val startDate = inputFormat.parse(dateTime) ?: return "-"
+            val currentDate = Date()
+            val difference = currentDate.time - startDate.time
+            val differenceInMinutes = Math.abs(difference / (60 * 1000))
 
-        return  formatTimeDifference(differenceInMinutes)// toplam milisaniye farkını dakika olarak hesaplar
+            formatTimeDifference(differenceInMinutes)
+        } catch (e: Exception) {
+            "-"
+        }
     }
 
     private fun formatTimeDifference(minutes : Long) : String {

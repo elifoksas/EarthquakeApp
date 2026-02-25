@@ -49,23 +49,47 @@ class EarthquakeAdapter (var mContext: Context, var earthquakeList: Earthquake, 
 
     }
 
-    private fun formatToHourMinute(dateTime : String): String {
-        val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    private fun formatToHourMinute(dateTime: String?): String {
 
-        val date = inputFormat.parse(dateTime)
-        return outputFormat.format(date)
+        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
+            return "-"   // veya "Bilinmiyor"
+        }
+
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+            val date = inputFormat.parse(dateTime)
+            if (date != null) {
+                outputFormat.format(date)
+            } else {
+                "-"
+            }
+
+        } catch (e: Exception) {
+            "-"
+        }
     }
 
-    private fun calculateMinutesPassed(dateTime: String): String{
-        val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
-        val currentDate = Date()
-        val startDate = inputFormat.parse(dateTime)
-        val difference = currentDate.time - startDate.time
+    private fun calculateMinutesPassed(dateTime: String?): String {
 
-        val differenceInMinutes = Math.abs(difference / (60 * 1000))
+        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
+            return "-"   // veri yoksa UI'da ne göstermek istiyorsan
+        }
 
-        return  formatTimeDifference(differenceInMinutes)// toplam milisaniye farkını dakika olarak hesaplar
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
+            val startDate = inputFormat.parse(dateTime) ?: return "-"
+            val currentDate = Date()
+
+            val difference = currentDate.time - startDate.time
+            val differenceInMinutes = kotlin.math.abs(difference / (60 * 1000))
+
+            formatTimeDifference(differenceInMinutes)
+
+        } catch (e: Exception) {
+            "-"
+        }
     }
 
     private fun formatTimeDifference(minutes : Long) : String {
