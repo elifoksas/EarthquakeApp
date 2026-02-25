@@ -39,6 +39,10 @@ android {
     }
 
 }
+kotlin {
+    jvmToolchain(17)
+}
+
 
 dependencies {
     def nav_version = "2.5.3"
