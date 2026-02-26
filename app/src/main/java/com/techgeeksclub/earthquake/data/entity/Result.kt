@@ -15,7 +15,7 @@ data class Result(
     var provider: String? = null,
     @SerializedName("title")
     var title: String? = null,
-    @SerializedName("date")
+    @SerializedName(value = "date_time", alternate = ["date"])
     var date: String? = null,
     @SerializedName("mag")
     var mag: Double? = null,
@@ -27,8 +27,6 @@ data class Result(
     var locationProperties: LocationProperties? = LocationProperties(),
     @SerializedName("rev")
     var rev: String? = null,
-    @SerializedName("date_time")
-    var dateTime: String? = null,
     @SerializedName("created_at")
     var createdAt: Int? = null,
     @SerializedName("location_tz")

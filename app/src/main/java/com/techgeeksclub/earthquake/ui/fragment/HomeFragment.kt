@@ -216,9 +216,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         }
 
         return try {
-            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
             val currentDate = Date()
-            val startDate = inputFormat.parse(dateTime) ?: return "-"
+            val startDate = parseApiDate(dateTime) ?: return "-"
             val difference = currentDate.time - startDate.time
             val differenceInMinutes = Math.abs(difference / (60 * 1000))
 
@@ -226,6 +225,20 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         } catch (e: Exception) {
             "-"
         }
+    }
+
+    private fun parseApiDate(dateTime: String): Date? {
+        val patterns = listOf("yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss")
+        patterns.forEach { pattern ->
+            try {
+                val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+                sdf.isLenient = false
+                val parsed = sdf.parse(dateTime)
+                if (parsed != null) return parsed
+            } catch (_: Exception) {
+            }
+        }
+        return null
     }
 
     private fun formatTimeDifference(minutes : Long) : String {

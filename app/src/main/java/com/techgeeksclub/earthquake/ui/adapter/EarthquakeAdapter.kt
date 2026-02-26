@@ -55,9 +55,8 @@ class EarthquakeAdapter (var mContext: Context, var earthquakeList: Earthquake, 
         }
 
         return try {
-            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
             val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-            val date = inputFormat.parse(dateTime) ?: return "-"
+            val date = parseApiDate(dateTime) ?: return "-"
             outputFormat.format(date)
         } catch (e: Exception) {
             "-"
@@ -70,9 +69,8 @@ class EarthquakeAdapter (var mContext: Context, var earthquakeList: Earthquake, 
         }
 
         return try {
-            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
             val currentDate = Date()
-            val startDate = inputFormat.parse(dateTime) ?: return "-"
+            val startDate = parseApiDate(dateTime) ?: return "-"
             val difference = currentDate.time - startDate.time
             val differenceInMinutes = Math.abs(difference / (60 * 1000))
 
@@ -80,6 +78,20 @@ class EarthquakeAdapter (var mContext: Context, var earthquakeList: Earthquake, 
         } catch (e: Exception) {
             "-"
         }
+    }
+
+    private fun parseApiDate(dateTime: String): Date? {
+        val patterns = listOf("yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss")
+        patterns.forEach { pattern ->
+            try {
+                val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+                sdf.isLenient = false
+                val parsed = sdf.parse(dateTime)
+                if (parsed != null) return parsed
+            } catch (_: Exception) {
+            }
+        }
+        return null
     }
 
     private fun formatTimeDifference(minutes : Long) : String {

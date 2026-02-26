@@ -9,7 +9,7 @@ data class Metadata(
     var dateStarts: String? = null,
     @SerializedName("date_ends")
     var dateEnds: String? = null,
-    @SerializedName("total")
+    @SerializedName(value = "count", alternate = ["total"])
     var total: Int? = null
 
 )
