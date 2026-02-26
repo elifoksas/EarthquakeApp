@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -8,17 +10,26 @@ plugins {
 }
 
 android {
-    namespace 'com.techgeeksclub.earthquake'
+    def localProperties = new Properties()
+    def localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.withInputStream { localProperties.load(it) }
+    }
+
+    namespace 'com.elifoksas.earthquake'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.techgeeksclub.earthquake"
+        applicationId "com.elifoksas.earthquake"
         minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                MAPS_API_KEY: localProperties.getProperty("MAPS_API_KEY", "")
+        ]
     }
 
     buildTypes {
