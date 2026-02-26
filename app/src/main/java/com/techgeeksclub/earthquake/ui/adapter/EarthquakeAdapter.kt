@@ -33,8 +33,8 @@ class EarthquakeAdapter (var mContext: Context, var earthquakeList: Earthquake, 
         val binding = holder.item
         result = earthquake
 
-        val formattedTime = formatToHourMinute(result[position].date.toString())
-        val minutesPassed = calculateMinutesPassed(result[position].date.toString())
+        val formattedTime = formatToHourMinute(result[position].date)
+        val minutesPassed = calculateMinutesPassed(result[position].date)
 
         binding.countryTV.text = result[position].title.toString()
         binding.intensityTV.text = result[position].mag.toString()
@@ -49,23 +49,37 @@ class EarthquakeAdapter (var mContext: Context, var earthquakeList: Earthquake, 
 
     }
 
-    private fun formatToHourMinute(dateTime : String): String {
-        val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    private fun formatToHourMinute(dateTime: String?): String {
+        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
+            return "-"
+        }
 
-        val date = inputFormat.parse(dateTime)
-        return outputFormat.format(date)
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val date = inputFormat.parse(dateTime) ?: return "-"
+            outputFormat.format(date)
+        } catch (e: Exception) {
+            "-"
+        }
     }
 
-    private fun calculateMinutesPassed(dateTime: String): String{
-        val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
-        val currentDate = Date()
-        val startDate = inputFormat.parse(dateTime)
-        val difference = currentDate.time - startDate.time
+    private fun calculateMinutesPassed(dateTime: String?): String {
+        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
+            return "-"
+        }
 
-        val differenceInMinutes = Math.abs(difference / (60 * 1000))
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault())
+            val currentDate = Date()
+            val startDate = inputFormat.parse(dateTime) ?: return "-"
+            val difference = currentDate.time - startDate.time
+            val differenceInMinutes = Math.abs(difference / (60 * 1000))
 
-        return  formatTimeDifference(differenceInMinutes)// toplam milisaniye farkını dakika olarak hesaplar
+            formatTimeDifference(differenceInMinutes)
+        } catch (e: Exception) {
+            "-"
+        }
     }
 
     private fun formatTimeDifference(minutes : Long) : String {
