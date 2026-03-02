@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.techgeeksclub.earthquake.ui.fragment.HomeFragment"
+        android:name="com.elifoksas.earthquake.ui.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.techgeeksclub.earthquake.ui.fragment.SettingsFragment"
+        android:name="com.elifoksas.earthquake.ui.fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/emergencyFragment"
-        android:name="com.techgeeksclub.earthquake.ui.fragment.EmergencyFragment"
+        android:name="com.elifoksas.earthquake.ui.fragment.EmergencyFragment"
         android:label="fragment_emergency"
         tools:layout="@layout/fragment_emergency" >
         <action
@@ -43,11 +43,11 @@
     </fragment>
     <fragment
         android:id="@+id/whistleFragment"
-        android:name="com.techgeeksclub.earthquake.ui.fragment.WhistleFragment"
+        android:name="com.elifoksas.earthquake.ui.fragment.WhistleFragment"
         android:label="fragment_whistle"
         tools:layout="@layout/fragment_whistle" />
     <fragment
         android:id="@+id/informationFragment"
-        android:name="com.techgeeksclub.earthquake.ui.fragment.InformationFragment"
+        android:name="com.elifoksas.earthquake.ui.fragment.InformationFragment"
         android:label="InformationFragment" />
 </navigation>
