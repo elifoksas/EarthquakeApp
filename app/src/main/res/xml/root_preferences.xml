@@ -36,8 +36,9 @@
         <ListPreference
             app:key="MagnitudeFilter"
             app:entries="@array/MagnitudeFilterEntries"
-            app:entryValues="@array/MagnitudeFilterEntries"
-            app:persistent="false"
+            app:entryValues="@array/MagnitudeFilterEntryValues"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="All magnitude"
             app:summary="Select Minimum earthquake magnitude to display"
             app:title="Minimum Magnitude"/>
 
