@@ -14,9 +14,9 @@
         <ListPreference
             app:key="MapsType"
             app:entries="@array/MapsTypeEntries"
-            app:entryValues="@array/MapsTypeEntries"
-            app:persistent="false"
-            android:defaultValue="2"
+            app:entryValues="@array/MapsTypeEntryValues"
+            android:defaultValue="normal"
+            app:useSimpleSummaryProvider="true"
             app:title="Select Maps Type"/>
 
         <CheckBoxPreference

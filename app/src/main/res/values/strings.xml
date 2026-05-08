@@ -11,15 +11,17 @@
     <string name="SettingsCategoryFilter">Filter the Earthquake List</string>
     <string name="SettingsCategoryOther">Other</string>
     <!-- Maps Type Values -->
-    <integer-array name="MapsTypeEntryValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </integer-array>
     <string-array name="MapsTypeEntries">
         <item>Normal</item>
         <item>Terrain</item>
         <item>Satellite</item>
+        <item>Hybrid</item>
+    </string-array>
+    <string-array name="MapsTypeEntryValues">
+        <item>normal</item>
+        <item>terrain</item>
+        <item>satellite</item>
+        <item>hybrid</item>
     </string-array>
     <!-- Magnitude Filter Values -->
     <string-array name="MagnitudeFilterEntries">

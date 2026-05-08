@@ -64,6 +64,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     companion object {
+        private const val MAPS_TYPE_KEY = "MapsType"
+        private const val DEFAULT_MAPS_TYPE = "normal"
         private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
     }
 
@@ -148,8 +150,23 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap?.setOnMarkerClickListener(this)
+        applyMapType()
         enableMyLocationFeatures()
         renderFilteredEarthquakes()
+    }
+
+    private fun applyMapType() {
+        val googleMap = mMap ?: return
+        googleMap.mapType = getSelectedMapType()
+    }
+
+    private fun getSelectedMapType(): Int {
+        return when (preferences.getString(MAPS_TYPE_KEY, DEFAULT_MAPS_TYPE)?.lowercase(Locale.US)) {
+            "terrain", "2" -> GoogleMap.MAP_TYPE_TERRAIN
+            "satellite", "3" -> GoogleMap.MAP_TYPE_SATELLITE
+            "hybrid", "4" -> GoogleMap.MAP_TYPE_HYBRID
+            else -> GoogleMap.MAP_TYPE_NORMAL
+        }
     }
 
     private fun applyMagnitudeFilter() {
@@ -338,6 +355,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == MagnitudePreference.KEY) {
             applyMagnitudeFilter()
+        }
+        if (key == MAPS_TYPE_KEY) {
+            applyMapType()
         }
     }
 
