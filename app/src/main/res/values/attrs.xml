@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DecimalSeekBarPreference">
+        <attr name="minDecimalValue" format="float" />
+        <attr name="maxDecimalValue" format="float" />
+        <attr name="decimalStep" format="float" />
+    </declare-styleable>
+</resources>

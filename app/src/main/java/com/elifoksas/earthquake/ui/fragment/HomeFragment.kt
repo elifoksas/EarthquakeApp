@@ -22,6 +22,7 @@ import com.elifoksas.earthquake.R
 import com.elifoksas.earthquake.data.entity.Result
 import com.elifoksas.earthquake.databinding.FragmentHomeBinding
 import com.elifoksas.earthquake.ui.adapter.EarthquakeAdapter
+import com.elifoksas.earthquake.ui.preference.MagnitudePreference
 import com.elifoksas.earthquake.ui.viewmodel.HomeViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -63,8 +64,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     companion object {
-        private const val MAGNITUDE_FILTER_KEY = "MagnitudeFilter"
-        private const val DEFAULT_MAGNITUDE_FILTER = "All magnitude"
         private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
     }
 
@@ -175,12 +174,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     private fun getSelectedMinimumMagnitude(): Double {
-        val selectedValue = preferences.getString(
-            MAGNITUDE_FILTER_KEY,
-            DEFAULT_MAGNITUDE_FILTER
-        ) ?: DEFAULT_MAGNITUDE_FILTER
+        val storedMagnitude = preferences.getInt(
+            MagnitudePreference.KEY,
+            MagnitudePreference.DEFAULT_STORED_VALUE
+        )
 
-        return selectedValue.substringBefore("+").toDoubleOrNull() ?: 0.0
+        return MagnitudePreference.toMagnitude(storedMagnitude)
     }
 
     private fun renderFilteredEarthquakes() {
@@ -337,7 +336,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == MAGNITUDE_FILTER_KEY) {
+        if (key == MagnitudePreference.KEY) {
             applyMagnitudeFilter()
         }
     }
