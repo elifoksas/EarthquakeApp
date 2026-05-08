@@ -31,7 +31,7 @@ class EarthquakeAdapter(
         val binding = holder.item
         val result = earthquakeList[position]
 
-        val formattedTime = formatToHourMinute(result.date)
+        val formattedTime = formatToDisplayDate(result.date)
         val minutesPassed = calculateMinutesPassed(result.date)
 
         binding.countryTV.text = result.title.toString()
@@ -44,13 +44,13 @@ class EarthquakeAdapter(
         }
     }
 
-    private fun formatToHourMinute(dateTime: String?): String {
+    private fun formatToDisplayDate(dateTime: String?): String {
         if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
             return "-"
         }
 
         return try {
-            val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
             val date = parseApiDate(dateTime) ?: return "-"
             outputFormat.format(date)
         } catch (e: Exception) {
@@ -76,7 +76,12 @@ class EarthquakeAdapter(
     }
 
     private fun parseApiDate(dateTime: String): Date? {
-        val patterns = listOf("yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss")
+        val patterns = listOf(
+            "yyyy-MM-dd HH:mm:ss",
+            "yyyy.MM.dd HH:mm:ss",
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        )
         patterns.forEach { pattern ->
             try {
                 val sdf = SimpleDateFormat(pattern, Locale.getDefault())
