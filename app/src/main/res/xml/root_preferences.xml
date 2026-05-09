@@ -1,54 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory app:title="@string/SettingsCategoryNotifications" >
-        <SwitchPreferenceCompat
-            android:background="@color/red"
-            app:key="notifications"
-            app:title="Enable Notifications"
-            app:summary="Activate it to receive notifications when we receive earthquake data."/>
 
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/SettingsCategoryMaps">
-        <ListPreference
-            app:key="MapsType"
-            app:entries="@array/MapsTypeEntries"
-            app:entryValues="@array/MapsTypeEntryValues"
-            android:defaultValue="normal"
-            app:useSimpleSummaryProvider="true"
-            app:title="Select Maps Type"/>
-
-        <CheckBoxPreference
-            app:key="FaultLines"
-            app:title="Fault Lines"
-            app:summary="Show fault lines?"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/SettingsCategoryFilter">
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategoryFilter">
         <com.elifoksas.earthquake.ui.preference.DecimalSeekBarPreference
             android:defaultValue="10"
-            app:key="MinimumEarthquakeMagnitude"
-            app:minDecimalValue="1.0"
-            app:maxDecimalValue="10.0"
             app:decimalStep="0.1"
-            app:title="Minimum Magnitude"
+            app:iconSpaceReserved="false"
+            app:key="MinimumEarthquakeMagnitude"
+            app:maxDecimalValue="10.0"
+            app:minDecimalValue="1.0"
+            app:title="@string/SettingsMinimumMagnitudeTitle"
             app:updatesContinuously="true" />
-
-        <Preference
-            app:key="feedback"
-            app:title="Send feedback"
-            app:summary="Report technical issues or suggest new features"/>
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/SettingsCategoryOther">
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategoryNotifications">
         <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
             app:key="notifications"
-            app:title="Enable message notifications"/>
+            app:summary="@string/SettingsEarthquakeNotificationsSummary"
+            app:title="@string/SettingsEarthquakeNotificationsTitle" />
 
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="message_notifications"
+            app:summary="@string/SettingsMessageNotificationsSummary"
+            app:title="@string/SettingsMessageNotificationsTitle" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategoryMaps">
+        <ListPreference
+            android:defaultValue="normal"
+            app:entries="@array/MapsTypeEntries"
+            app:entryValues="@array/MapsTypeEntryValues"
+            app:iconSpaceReserved="false"
+            app:key="MapsType"
+            app:title="@string/SettingsMapTypeTitle"
+            app:useSimpleSummaryProvider="true" />
+
+        <CheckBoxPreference
+            app:iconSpaceReserved="false"
+            app:key="FaultLines"
+            app:summary="@string/SettingsFaultLinesSummary"
+            app:title="@string/SettingsFaultLinesTitle" />
+    </PreferenceCategory>
+
+
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategorySupport">
         <Preference
+            app:iconSpaceReserved="false"
             app:key="feedback"
-            app:title="Send feedback"
-            app:summary="Report technical issues or suggest new features"/>
+            app:summary="@string/SettingsFeedbackSummary"
+            app:title="@string/SettingsFeedbackTitle" />
     </PreferenceCategory>
 </PreferenceScreen>

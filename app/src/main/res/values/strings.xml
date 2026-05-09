@@ -9,7 +9,17 @@
     <string name="SettingsCategoryNotifications">Notifications</string>
     <string name="SettingsCategoryMaps">Maps</string>
     <string name="SettingsCategoryFilter">Filter the Earthquake List</string>
-    <string name="SettingsCategoryOther">Other</string>
+    <string name="SettingsCategorySupport">Support</string>
+    <string name="SettingsEarthquakeNotificationsTitle">Enable earthquake notifications</string>
+    <string name="SettingsEarthquakeNotificationsSummary">Receive alerts when new earthquake data is available.</string>
+    <string name="SettingsMessageNotificationsTitle">Enable message notifications</string>
+    <string name="SettingsMessageNotificationsSummary">Receive app messages and important updates.</string>
+    <string name="SettingsMapTypeTitle">Select map type</string>
+    <string name="SettingsFaultLinesTitle">Fault lines</string>
+    <string name="SettingsFaultLinesSummary">Show fault lines on the map.</string>
+    <string name="SettingsMinimumMagnitudeTitle">Minimum magnitude</string>
+    <string name="SettingsFeedbackTitle">Send feedback</string>
+    <string name="SettingsFeedbackSummary">Report technical issues or suggest new features.</string>
     <!-- Maps Type Values -->
     <string-array name="MapsTypeEntries">
         <item>Normal</item>
