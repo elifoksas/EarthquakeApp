@@ -7,4 +7,12 @@
     <color name="lightgray">#7A7979</color>
     <color name="darkWhite">#D3D3D3</color>
     <color name="lightred">#BA4444</color>
+    <color name="earthquake_accent">#BA4444</color>
+    <color name="earthquake_accent_dark">#8F2F2F</color>
+    <color name="earthquake_accent_soft">#F8EAEA</color>
+    <color name="earthquake_text_primary">#202124</color>
+    <color name="earthquake_text_secondary">#6D737A</color>
+    <color name="earthquake_surface_soft">#F8F9FA</color>
+    <color name="earthquake_stroke">#E8EAED</color>
+    <color name="earthquake_handle">#D9DDE2</color>
 </resources>
