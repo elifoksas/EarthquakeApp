@@ -2,6 +2,59 @@
     <string name="app_name">EarthquakeApp</string>
     <string name="Earthquakes">Earthquakes</string>
     <string name="Emergency">Emergency</string>
+
+
+    <!-- Settings Strings -->
     <string name="Settings">Settings</string>
+    <string name="SettingsCategoryNotifications">Notifications</string>
+    <string name="SettingsCategoryMaps">Maps</string>
+    <string name="SettingsCategoryFilter">Filter the Earthquake List</string>
+    <string name="SettingsCategorySupport">Support</string>
+    <string name="SettingsEarthquakeNotificationsTitle">Enable earthquake notifications</string>
+    <string name="SettingsEarthquakeNotificationsSummary">Receive alerts when new earthquake data is available.</string>
+    <string name="SettingsMessageNotificationsTitle">Enable message notifications</string>
+    <string name="SettingsMessageNotificationsSummary">Receive app messages and important updates.</string>
+    <string name="SettingsMapTypeTitle">Select map type</string>
+    <string name="SettingsMinimumMagnitudeTitle">Minimum magnitude</string>
+    <string name="SettingsFeedbackTitle">Send feedback</string>
+    <string name="SettingsFeedbackSummary">Report technical issues or suggest new features.</string>
+    <!-- Maps Type Values -->
+    <string-array name="MapsTypeEntries">
+        <item>Normal</item>
+        <item>Terrain</item>
+        <item>Satellite</item>
+        <item>Hybrid</item>
+    </string-array>
+    <string-array name="MapsTypeEntryValues">
+        <item>normal</item>
+        <item>terrain</item>
+        <item>satellite</item>
+        <item>hybrid</item>
+    </string-array>
+    <!-- Magnitude Filter Values -->
+    <string-array name="MagnitudeFilterEntries">
+        <item>All magnitude</item>
+        <item>1+</item>
+        <item>2+</item>
+        <item>3+</item>
+        <item>4+</item>
+        <item>5+</item>
+        <item>6+</item>
+        <item>7+</item>
+        <item>8+</item>
+        <item>9+</item>
+    </string-array>
+    <string-array name="MagnitudeFilterEntryValues">
+        <item>All magnitude</item>
+        <item>1+</item>
+        <item>2+</item>
+        <item>3+</item>
+        <item>4+</item>
+        <item>5+</item>
+        <item>6+</item>
+        <item>7+</item>
+        <item>8+</item>
+        <item>9+</item>
+    </string-array>
 
 </resources>

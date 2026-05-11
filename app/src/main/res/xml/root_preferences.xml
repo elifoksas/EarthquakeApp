@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategoryFilter">
+        <com.elifoksas.earthquake.ui.preference.DecimalSeekBarPreference
+            android:defaultValue="10"
+            app:decimalStep="0.1"
+            app:iconSpaceReserved="false"
+            app:key="MinimumEarthquakeMagnitude"
+            app:maxDecimalValue="10.0"
+            app:minDecimalValue="1.0"
+            app:title="@string/SettingsMinimumMagnitudeTitle"
+            app:updatesContinuously="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategoryNotifications">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="notifications"
+            app:summary="@string/SettingsEarthquakeNotificationsSummary"
+            app:title="@string/SettingsEarthquakeNotificationsTitle" />
+
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="message_notifications"
+            app:summary="@string/SettingsMessageNotificationsSummary"
+            app:title="@string/SettingsMessageNotificationsTitle" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategoryMaps">
+        <ListPreference
+            android:defaultValue="normal"
+            app:entries="@array/MapsTypeEntries"
+            app:entryValues="@array/MapsTypeEntryValues"
+            app:iconSpaceReserved="false"
+            app:key="MapsType"
+            app:title="@string/SettingsMapTypeTitle"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/SettingsCategorySupport">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="feedback"
+            app:summary="@string/SettingsFeedbackSummary"
+            app:title="@string/SettingsFeedbackTitle" />
+    </PreferenceCategory>
+</PreferenceScreen>

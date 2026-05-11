@@ -1,7 +1,9 @@
 package com.elifoksas.earthquake.ui.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -10,11 +12,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.elifoksas.earthquake.R
+import com.elifoksas.earthquake.data.entity.Result
+import com.elifoksas.earthquake.databinding.FragmentHomeBinding
+import com.elifoksas.earthquake.ui.adapter.EarthquakeAdapter
+import com.elifoksas.earthquake.ui.preference.MagnitudePreference
+import com.elifoksas.earthquake.ui.viewmodel.HomeViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -22,66 +33,62 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.elifoksas.earthquake.data.entity.Result
-import com.elifoksas.earthquake.databinding.FragmentHomeBinding
-import com.elifoksas.earthquake.ui.adapter.EarthquakeAdapter
-import com.elifoksas.earthquake.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
 @AndroidEntryPoint
-class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
+    SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private lateinit var viewModel: HomeViewModel
-    private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModels()
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     private var mMap: GoogleMap? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationManager: LocationManager
-    private  val LOCATION_PERMISSION_REQUEST_CODE = 1
+    private lateinit var preferences: SharedPreferences
     private var userLocation: LatLng? = null
+    private var allEarthquakes: List<Result> = emptyList()
+    private var filteredEarthquakes: List<Result> = emptyList()
+    private var selectedEarthquake: Result? = null
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val tempViewModel : HomeViewModel by viewModels()
-        viewModel = tempViewModel
+    private val locationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            enableMyLocationFeatures()
+        }
     }
 
+    companion object {
+        private const val MAPS_TYPE_KEY = "MapsType"
+        private const val DEFAULT_MAPS_TYPE = "normal"
+        private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        val layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
 
-        getUserLocation()
-
-
-        viewModel.earthquakes.observe(viewLifecycleOwner){
-            val adapter = EarthquakeAdapter(requireContext(),it,object :
-                EarthquakeAdapter.OnItemClickListener {
-                override fun onItemClick(item: Result) {
-                    // Details of the clicked item are displayed here.
-                   handleItemClickDetails(item)
-                }
-                })
-            binding.recyclerView.adapter = adapter
+        viewModel.earthquakes.observe(viewLifecycleOwner) { earthquakes ->
+            allEarthquakes = earthquakes.result
+            applyMagnitudeFilter()
         }
 
         binding.backButton.setOnClickListener {
             binding.earthquakeDetailsLayout.visibility = View.GONE
             binding.recyclerView.visibility = View.VISIBLE
-
-            //Focuses back on the map when the back button is pressed
-            mMap.let {
-                val turkeyLatLng = LatLng(39.9334, 32.8597)
-                mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(turkeyLatLng, 4f))
-            }
+            mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(TURKEY_LAT_LNG, 4f))
         }
 
         return binding.root
@@ -89,125 +96,209 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(com.elifoksas.earthquake.R.id.map) as SupportMapFragment?
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
     }
 
-    private fun getUserLocation(){
-        // Konum izni kontrolü
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            // Konum izni varsa konumu al ve haritada göster
-            locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            val lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-            if (lastLocation != null){
-                userLocation = LatLng(lastLocation.latitude,lastLocation.longitude)
-                mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation!!,15f))
-                Log.d("kullanici" , userLocation!!.longitude.toString())
-            }
+    override fun onStart() {
+        super.onStart()
+        preferences.registerOnSharedPreferenceChangeListener(this)
+        applyMagnitudeFilter()
+    }
+
+    override fun onStop() {
+        preferences.unregisterOnSharedPreferenceChangeListener(this)
+        super.onStop()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun enableMyLocationFeatures() {
+        if (hasLocationPermission()) {
             mMap?.isMyLocationEnabled = true
+            mMap?.uiSettings?.isMyLocationButtonEnabled = true
+
+            locationManager =
+                requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            if (lastLocation != null) {
+                userLocation = LatLng(lastLocation.latitude, lastLocation.longitude)
+                Log.d("kullanici", userLocation!!.longitude.toString())
+            }
+
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    userLocation = LatLng(location.latitude, location.longitude)
+                    selectedEarthquake?.let { updateDistance(it) }
+                }
+            }
         } else {
-            // Konum izni yoksa izin iste
             requestLocationPermission()
         }
     }
-    private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            LOCATION_PERMISSION_REQUEST_CODE
-        )
+
+    private fun hasLocationPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
-    override fun onMapReady(p0: GoogleMap) {
-        mMap = p0
+    private fun requestLocationPermission() {
+        locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
         mMap?.setOnMarkerClickListener(this)
+        applyMapType()
+        enableMyLocationFeatures()
+        renderFilteredEarthquakes()
+    }
 
-        viewModel.earthquakes.observe(viewLifecycleOwner) { earthquakesList ->
-            mMap?.clear()
+    private fun applyMapType() {
+        val googleMap = mMap ?: return
+        googleMap.mapType = getSelectedMapType()
+    }
 
-            getUserLocation()
-
-            val turkeyLatLng = LatLng(39.9334, 32.8597)
-            mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(turkeyLatLng, 4f))
-
-            //Adding pins for each earthquake
-            earthquakesList.result.forEach { earthquake ->
-                val coordinates = earthquake.geojson?.coordinates
-                val latitude = coordinates?.get(1)
-                val longitude = coordinates?.get(0)
-
-                val location = LatLng(latitude!!, longitude!!)
-                val marker = mMap?.addMarker(
-                    MarkerOptions()
-                        .position(location)
-                        .title(earthquake.title)
-                )
-                marker?.tag = earthquake
-            }
+    private fun getSelectedMapType(): Int {
+        return when (preferences.getString(MAPS_TYPE_KEY, DEFAULT_MAPS_TYPE)?.lowercase(Locale.US)) {
+            "terrain", "2" -> GoogleMap.MAP_TYPE_TERRAIN
+            "satellite", "3" -> GoogleMap.MAP_TYPE_SATELLITE
+            "hybrid", "4" -> GoogleMap.MAP_TYPE_HYBRID
+            else -> GoogleMap.MAP_TYPE_NORMAL
         }
     }
+
+    private fun applyMagnitudeFilter() {
+        val minMagnitude = getSelectedMinimumMagnitude()
+        filteredEarthquakes = allEarthquakes.filter { earthquake ->
+            (earthquake.mag ?: 0.0) >= minMagnitude
+        }
+
+        if (_binding != null) {
+            binding.recyclerView.adapter = EarthquakeAdapter(
+                requireContext(),
+                filteredEarthquakes,
+                object : EarthquakeAdapter.OnItemClickListener {
+                    override fun onItemClick(item: Result) {
+                        handleItemClickDetails(item)
+                    }
+                }
+            )
+        }
+
+        renderFilteredEarthquakes()
+    }
+
+    private fun getSelectedMinimumMagnitude(): Double {
+        val storedMagnitude = preferences.getInt(
+            MagnitudePreference.KEY,
+            MagnitudePreference.DEFAULT_STORED_VALUE
+        )
+
+        return MagnitudePreference.toMagnitude(storedMagnitude)
+    }
+
+    private fun renderFilteredEarthquakes() {
+        val googleMap = mMap ?: return
+        googleMap.clear()
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TURKEY_LAT_LNG, 4f))
+
+        filteredEarthquakes.forEach { earthquake ->
+            val latitude = earthquake.geojson?.coordinates?.getOrNull(1) ?: return@forEach
+            val longitude = earthquake.geojson?.coordinates?.getOrNull(0) ?: return@forEach
+            val location = LatLng(latitude, longitude)
+
+            val marker = googleMap.addMarker(
+                MarkerOptions()
+                    .position(location)
+                    .title(earthquake.title)
+            )
+            marker?.tag = earthquake
+        }
+    }
+
     override fun onMarkerClick(marker: Marker): Boolean {
-        // Get information about the clicked marker
         val earthquakeInfo = marker.tag as? Result
         earthquakeInfo?.let { showMarkerInfoWindow(it) }
 
-        // Focus the map on the location of the clicked marker
-        marker.position.let { location ->
-            mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
-        }
-
+        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 10f))
         return true
     }
 
     private fun showMarkerInfoWindow(earthquakeInfo: Result) {
-        // Update the info window using the marker's information
+        selectedEarthquake = earthquakeInfo
         binding.magTV.text = earthquakeInfo.mag.toString()
         binding.depthTV.text = earthquakeInfo.depth.toString()
         binding.countryTV.text = earthquakeInfo.title.toString()
+        binding.dateTV.text = formatToDisplayDate(earthquakeInfo.date)
         val minutesPassed = calculateMinutesPassed(earthquakeInfo.date)
         binding.minutesPassedTV.text = if (minutesPassed == "-") "-" else "$minutesPassed ago"
+        updateDistance(earthquakeInfo)
 
-        // Show info window
         binding.recyclerView.visibility = View.GONE
         binding.earthquakeDetailsLayout.visibility = View.VISIBLE
     }
 
-    private fun handleItemClickDetails(item:Result){
+    private fun handleItemClickDetails(item: Result) {
+        selectedEarthquake = item
         binding.recyclerView.visibility = View.GONE
         binding.earthquakeDetailsLayout.visibility = View.VISIBLE
 
         binding.magTV.text = item.mag.toString()
         binding.depthTV.text = item.depth.toString()
         binding.countryTV.text = item.title.toString()
+        binding.dateTV.text = formatToDisplayDate(item.date)
         val minutesPassed = calculateMinutesPassed(item.date)
         binding.minutesPassedTV.text = if (minutesPassed == "-") "-" else "$minutesPassed ago"
+        updateDistance(item)
 
-        // Focus the map on the location of the clicked item
-        val latitude = item.geojson?.coordinates?.get(1) ?: 0.0
-        val longitude = item.geojson?.coordinates?.get(0) ?: 0.0
+        val latitude = item.geojson?.coordinates?.getOrNull(1) ?: 0.0
+        val longitude = item.geojson?.coordinates?.getOrNull(0) ?: 0.0
         val location = LatLng(latitude, longitude)
         mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
+    }
 
-        val distance = calculateDistance(location,userLocation)
+    private fun updateDistance(item: Result) {
+        val latitude = item.geojson?.coordinates?.getOrNull(1)
+        val longitude = item.geojson?.coordinates?.getOrNull(0)
+        val currentUserLocation = userLocation
 
-        binding.distanceTV.text = "$distance km"
-
+        binding.distanceTV.text = if (latitude != null && longitude != null && currentUserLocation != null) {
+            val distance = calculateDistance(LatLng(latitude, longitude), currentUserLocation)
+            "$distance km"
+        } else {
+            "-"
+        }
     }
 
     private fun calculateDistance(earthquakeLocation: LatLng, userLocation: LatLng?): Long {
         val result = FloatArray(1)
         if (userLocation != null) {
             Location.distanceBetween(
-                earthquakeLocation.latitude, earthquakeLocation.longitude,
-                userLocation.latitude, userLocation.longitude, result
+                earthquakeLocation.latitude,
+                earthquakeLocation.longitude,
+                userLocation.latitude,
+                userLocation.longitude,
+                result
             )
         }
 
-        return (result[0] / 1000).toLong() // m to km
+        return (result[0] / 1000).toLong()
+    }
+
+    private fun formatToDisplayDate(dateTime: String?): String {
+        if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
+            return "-"
+        }
+
+        return try {
+            val outputFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+            val date = parseApiDate(dateTime) ?: return "-"
+            outputFormat.format(date)
+        } catch (_: Exception) {
+            "-"
+        }
     }
 
     private fun calculateMinutesPassed(dateTime: String?): String {
@@ -219,16 +310,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             val currentDate = Date()
             val startDate = parseApiDate(dateTime) ?: return "-"
             val difference = currentDate.time - startDate.time
-            val differenceInMinutes = Math.abs(difference / (60 * 1000))
+            val differenceInMinutes = kotlin.math.abs(difference / (60 * 1000))
 
             formatTimeDifference(differenceInMinutes)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             "-"
         }
     }
 
     private fun parseApiDate(dateTime: String): Date? {
-        val patterns = listOf("yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss")
+        val patterns = listOf(
+            "yyyy-MM-dd HH:mm:ss",
+            "yyyy.MM.dd HH:mm:ss",
+            "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+            "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        )
         patterns.forEach { pattern ->
             try {
                 val sdf = SimpleDateFormat(pattern, Locale.getDefault())
@@ -241,11 +337,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         return null
     }
 
-    private fun formatTimeDifference(minutes : Long) : String {
-
+    private fun formatTimeDifference(minutes: Long): String {
         val hours = minutes / 60
         val remainingMinutes = minutes % 60
-
         val formattedString = StringBuilder()
 
         if (hours > 0) {
@@ -256,7 +350,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         }
 
         return formattedString.toString().trim()
-
     }
 
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (key == MagnitudePreference.KEY) {
+            applyMagnitudeFilter()
+        }
+        if (key == MAPS_TYPE_KEY) {
+            applyMapType()
+        }
+    }
+
+    override fun onDestroyView() {
+        mMap?.setOnMarkerClickListener(null)
+        mMap = null
+        _binding = null
+        super.onDestroyView()
+    }
 }
