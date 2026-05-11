@@ -43,15 +43,7 @@
             app:key="MapsType"
             app:title="@string/SettingsMapTypeTitle"
             app:useSimpleSummaryProvider="true" />
-
-        <CheckBoxPreference
-            app:iconSpaceReserved="false"
-            app:key="FaultLines"
-            app:summary="@string/SettingsFaultLinesSummary"
-            app:title="@string/SettingsFaultLinesTitle" />
     </PreferenceCategory>
-
-
 
     <PreferenceCategory
         app:iconSpaceReserved="false"

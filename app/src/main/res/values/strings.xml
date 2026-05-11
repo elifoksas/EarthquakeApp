@@ -15,8 +15,6 @@
     <string name="SettingsMessageNotificationsTitle">Enable message notifications</string>
     <string name="SettingsMessageNotificationsSummary">Receive app messages and important updates.</string>
     <string name="SettingsMapTypeTitle">Select map type</string>
-    <string name="SettingsFaultLinesTitle">Fault lines</string>
-    <string name="SettingsFaultLinesSummary">Show fault lines on the map.</string>
     <string name="SettingsMinimumMagnitudeTitle">Minimum magnitude</string>
     <string name="SettingsFeedbackTitle">Send feedback</string>
     <string name="SettingsFeedbackSummary">Report technical issues or suggest new features.</string>
