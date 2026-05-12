@@ -11,6 +11,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
@@ -59,6 +60,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var filteredEarthquakes: List<Result> = emptyList()
     private var selectedEarthquake: Result? = null
     private lateinit var detailSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private var compactDragStartY = 0f
 
     private val locationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -76,6 +78,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         private const val MAP_FOCUS_EXTRA_PADDING_DP = 24
         private const val LIST_SINGLE_EARTHQUAKE_ZOOM = 6f
         private const val LIST_MAP_EDGE_PADDING_DP = 40
+        private const val COMPACT_EXPAND_DRAG_THRESHOLD_DP = 24
         private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
     }
 
@@ -147,8 +150,51 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             expandCompactDetails()
         }
 
+        setupCompactDetailsDrag()
+
         binding.shareButton.setOnClickListener {
             selectedEarthquake?.let { shareEarthquake(it) }
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupCompactDetailsDrag() {
+        val compactDragTargets = listOf(
+            binding.compactDetailsBar,
+            binding.compactDragHandle,
+            binding.compactMagTV,
+            binding.compactCountryTV,
+            binding.compactSubtitleTV,
+            binding.compactMinutesPassedTV
+        )
+
+        compactDragTargets.forEach { view ->
+            view.setOnTouchListener { _, event ->
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_DOWN -> {
+                        compactDragStartY = event.rawY
+                        false
+                    }
+
+                    MotionEvent.ACTION_MOVE -> {
+                        val dragDistance = compactDragStartY - event.rawY
+                        if (dragDistance > dpToPx(COMPACT_EXPAND_DRAG_THRESHOLD_DP)) {
+                            expandCompactDetails()
+                            true
+                        } else {
+                            false
+                        }
+                    }
+
+                    MotionEvent.ACTION_UP,
+                    MotionEvent.ACTION_CANCEL -> {
+                        compactDragStartY = 0f
+                        false
+                    }
+
+                    else -> false
+                }
+            }
         }
     }
 
