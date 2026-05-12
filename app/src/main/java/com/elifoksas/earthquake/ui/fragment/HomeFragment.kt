@@ -292,6 +292,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding.minutesPassedTV.text = elapsed
         binding.shakingStatusTV.text = getMagnitudeStatus(item.mag)
         binding.detailLocationSubtitleTV.text = subtitle
+        binding.summaryLocationTV.text = getNearbyLocationText(item)
         binding.compactMagTV.text = magnitude
         binding.compactCountryTV.text = title
         binding.compactSubtitleTV.text = subtitle
@@ -508,6 +509,20 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         val coordinates = getEarthquakeCoordinates(item) ?: return "Selected earthquake"
 
         return String.format(Locale.US, "%.3f, %.3f", coordinates.latitude, coordinates.longitude)
+    }
+
+    private fun getNearbyLocationText(item: Result): String {
+        val closestCity = item.locationProperties?.closestCity?.name
+        if (!closestCity.isNullOrBlank()) {
+            return "Near $closestCity"
+        }
+
+        val epiCenter = item.locationProperties?.epiCenter?.name
+        if (!epiCenter.isNullOrBlank()) {
+            return "Near $epiCenter"
+        }
+
+        return getLocationSubtitle(item)
     }
 
     private fun formatElapsedChip(dateTime: String?): String {
