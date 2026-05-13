@@ -79,6 +79,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         private const val LIST_SINGLE_EARTHQUAKE_ZOOM = 6f
         private const val LIST_MAP_EDGE_PADDING_DP = 40
         private const val COMPACT_EXPAND_DRAG_THRESHOLD_DP = 24
+        private const val DETAIL_SHEET_PEEK_HEIGHT_DP = 92
         private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
     }
 
@@ -123,6 +124,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         detailSheetBehavior = BottomSheetBehavior.from(binding.earthquakeDetailsLayout)
         detailSheetBehavior.isHideable = true
         detailSheetBehavior.skipCollapsed = false
+        detailSheetBehavior.peekHeight = dpToPx(DETAIL_SHEET_PEEK_HEIGHT_DP)
         detailSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         detailSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -164,8 +166,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             binding.compactDragHandle,
             binding.compactMagTV,
             binding.compactCountryTV,
-            binding.compactSubtitleTV,
-            binding.compactMinutesPassedTV
+            binding.compactSubtitleTV
         )
 
         compactDragTargets.forEach { view ->
@@ -341,8 +342,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding.summaryLocationTV.text = getNearbyLocationText(item)
         binding.compactMagTV.text = magnitude
         binding.compactCountryTV.text = title
-        binding.compactSubtitleTV.text = subtitle
-        binding.compactMinutesPassedTV.text = elapsed
+        binding.compactSubtitleTV.text = elapsed
         updateDistance(item)
 
         binding.recyclerView.visibility = View.GONE
