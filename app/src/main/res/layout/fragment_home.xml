@@ -105,6 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="0dp"
+            android:layout_marginTop="12dp"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="2"
@@ -118,15 +119,7 @@
             app:layout_constraintTop_toTopOf="@id/backButton"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <View
-            android:id="@+id/detailDivider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="6dp"
-            android:background="@color/earthquake_stroke"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/backButton" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detailContent"
@@ -135,13 +128,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailDivider">
+            app:layout_constraintTop_toBottomOf="@id/minutesPassedTV">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/summaryCard"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/earthquake_detail_summary_background"
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
@@ -185,7 +178,7 @@
                 android:id="@+id/shakingStatusTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="10dp"
                 android:text="Moderate shaking"
                 android:textColor="@color/earthquake_text_primary"
@@ -199,7 +192,7 @@
                 android:id="@+id/detailTimestampTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:ellipsize="end"
@@ -215,49 +208,34 @@
                 android:id="@+id/detailLocationSubtitleTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="10dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="37.96, 38.24"
                 android:textColor="@color/earthquake_text_secondary"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 app:layout_constraintEnd_toStartOf="@id/summaryWaveIcon"
                 app:layout_constraintStart_toEndOf="@id/magnitudeCircleContainer"
                 app:layout_constraintTop_toBottomOf="@id/detailTimestampTV" />
 
-            <LinearLayout
-                android:id="@+id/summaryLocationRow"
+            <TextView
+                android:id="@+id/summaryLocationTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="10dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Near Yesilyurt, Malatya"
+                android:textColor="@color/earthquake_text_secondary"
                 app:layout_constraintEnd_toStartOf="@id/summaryWaveIcon"
                 app:layout_constraintStart_toEndOf="@id/magnitudeCircleContainer"
-                app:layout_constraintTop_toBottomOf="@id/detailLocationSubtitleTV">
+                app:layout_constraintTop_toBottomOf="@id/detailLocationSubtitleTV"
+                android:textSize="13sp" />
 
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/detail_icon_location" />
-
-                <TextView
-                    android:id="@+id/summaryLocationTV"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Near Yesilyurt, Malatya"
-                    android:textColor="@color/earthquake_text_secondary"
-                    android:textSize="14sp" />
-            </LinearLayout>
 
             <ImageView
                 android:id="@+id/summaryWaveIcon"
