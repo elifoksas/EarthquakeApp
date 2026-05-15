@@ -9,13 +9,19 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.Fade
+import android.transition.TransitionManager
+import android.transition.TransitionSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -61,6 +67,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var selectedEarthquake: Result? = null
     private lateinit var detailSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var compactDragStartY = 0f
+    private var isDetailHeaderMagnitudeVisible = false
+    private var lastDetailSheetSlideOffset = -1f
 
     private val locationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -80,6 +88,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         private const val LIST_MAP_EDGE_PADDING_DP = 40
         private const val COMPACT_EXPAND_DRAG_THRESHOLD_DP = 24
         private const val DETAIL_SHEET_PEEK_HEIGHT_DP = 92
+        private const val DETAIL_HEADER_MAG_SLIDE_THRESHOLD = 0.92f
+        private const val DETAIL_HEADER_MAG_ANIMATION_DURATION_MS = 260L
         private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
     }
 
@@ -131,13 +141,31 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 val earthquake = selectedEarthquake ?: return
 
                 when (newState) {
-                    BottomSheetBehavior.STATE_EXPANDED -> focusEarthquakeOnMap(earthquake)
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        lastDetailSheetSlideOffset = 1f
+                        setDetailHeaderMagnitudeVisible(visible = false, animate = true)
+                        focusEarthquakeOnMap(earthquake)
+                    }
+
                     BottomSheetBehavior.STATE_COLLAPSED,
-                    BottomSheetBehavior.STATE_HIDDEN -> showCompactDetails()
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                        lastDetailSheetSlideOffset = 0f
+                        showCompactDetails()
+                    }
                 }
             }
 
-            override fun onSlide(bottomSheet: View, slideOffset: Float) = Unit
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                val isSlidingDown = slideOffset < lastDetailSheetSlideOffset
+                val isDraggingTowardCompactHeader =
+                    isSlidingDown && slideOffset in 0f..DETAIL_HEADER_MAG_SLIDE_THRESHOLD
+
+                setDetailHeaderMagnitudeVisible(
+                    visible = isDraggingTowardCompactHeader,
+                    animate = true
+                )
+                lastDetailSheetSlideOffset = slideOffset
+            }
         })
 
         binding.backButton.setOnClickListener {
@@ -344,6 +372,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding.compactCountryTV.text = title
         binding.compactSubtitleTV.text = elapsed
         updateDistance(item)
+        lastDetailSheetSlideOffset = -1f
+        setDetailHeaderMagnitudeVisible(visible = false, animate = false)
 
         binding.recyclerView.visibility = View.GONE
         binding.compactDetailsBar.visibility = View.GONE
@@ -376,9 +406,72 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         binding.compactDetailsBar.visibility = View.GONE
         binding.earthquakeDetailsLayout.visibility = View.VISIBLE
+        lastDetailSheetSlideOffset = 0f
+        setDetailHeaderMagnitudeVisible(visible = false, animate = false)
         binding.earthquakeDetailsLayout.post {
             detailSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             focusEarthquakeOnMap(earthquake)
+        }
+    }
+
+    private fun setDetailHeaderMagnitudeVisible(visible: Boolean, animate: Boolean) {
+        if (isDetailHeaderMagnitudeVisible == visible) return
+
+        isDetailHeaderMagnitudeVisible = visible
+
+        if (animate && binding.earthquakeDetailsLayout.isLaidOut) {
+            val transition = TransitionSet()
+                .setOrdering(TransitionSet.ORDERING_TOGETHER)
+                .addTransition(
+                    ChangeBounds()
+                        .addTarget(binding.magTV)
+                        .addTarget(binding.countryTV)
+                        .addTarget(binding.minutesPassedTV)
+                )
+                .addTransition(Fade(Fade.IN or Fade.OUT).addTarget(binding.magTV))
+                .setDuration(DETAIL_HEADER_MAG_ANIMATION_DURATION_MS)
+
+            transition.interpolator = DecelerateInterpolator()
+            TransitionManager.beginDelayedTransition(binding.earthquakeDetailsLayout, transition)
+        }
+
+        ConstraintSet().apply {
+            clone(binding.earthquakeDetailsLayout)
+            setVisibility(binding.magTV.id, if (visible) View.VISIBLE else View.GONE)
+
+            if (visible) {
+                connect(
+                    binding.countryTV.id,
+                    ConstraintSet.START,
+                    binding.magTV.id,
+                    ConstraintSet.END,
+                    dpToPx(10)
+                )
+                connect(
+                    binding.minutesPassedTV.id,
+                    ConstraintSet.START,
+                    binding.magTV.id,
+                    ConstraintSet.END,
+                    dpToPx(10)
+                )
+            } else {
+                connect(
+                    binding.countryTV.id,
+                    ConstraintSet.START,
+                    binding.backButton.id,
+                    ConstraintSet.END,
+                    dpToPx(12)
+                )
+                connect(
+                    binding.minutesPassedTV.id,
+                    ConstraintSet.START,
+                    binding.backButton.id,
+                    ConstraintSet.END,
+                    dpToPx(12)
+                )
+            }
+
+            applyTo(binding.earthquakeDetailsLayout)
         }
     }
 

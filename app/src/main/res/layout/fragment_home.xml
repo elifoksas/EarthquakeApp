@@ -68,6 +68,7 @@
             android:id="@+id/magTV"
             android:layout_width="64dp"
             android:layout_height="34dp"
+            android:layout_marginStart="8dp"
             android:background="@drawable/earthquake_detail_magnitude_pill"
             android:gravity="center"
             android:text="4.2"
@@ -75,7 +76,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/backButton"
+            app:layout_constraintStart_toEndOf="@id/backButton"
             app:layout_constraintTop_toTopOf="@id/backButton" />
 
         <TextView
