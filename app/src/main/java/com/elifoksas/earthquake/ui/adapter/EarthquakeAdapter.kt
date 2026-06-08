@@ -1,11 +1,13 @@
 package com.elifoksas.earthquake.ui.adapter
 
 import android.content.Context
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elifoksas.earthquake.data.entity.Result
 import com.elifoksas.earthquake.databinding.EarthquakeItemBinding
+import com.google.android.gms.maps.model.LatLng
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -13,7 +15,8 @@ import java.util.Locale
 class EarthquakeAdapter(
     private val mContext: Context,
     private val earthquakeList: List<Result>,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
+    private var userLocation: LatLng? = null
 ) : RecyclerView.Adapter<EarthquakeAdapter.HomePageItemHolder>() {
 
     inner class HomePageItemHolder(var item: EarthquakeItemBinding) : RecyclerView.ViewHolder(item.root)
@@ -34,14 +37,22 @@ class EarthquakeAdapter(
         val formattedTime = formatToDisplayDate(result.date)
         val minutesPassed = calculateMinutesPassed(result.date)
 
-        binding.countryTV.text = result.title.toString()
-        binding.intensityTV.text = result.mag.toString()
+        binding.countryTV.text = result.title?.takeUnless { it.isBlank() } ?: "-"
+        binding.intensityTV.text = formatMagnitude(result.mag)
         binding.dateTimeTV.text = formattedTime
         binding.minutesPassedTV.text = minutesPassed
+        binding.distanceTV.text = formatDistance(result)
 
         holder.itemView.setOnClickListener {
             listener.onItemClick(result)
         }
+    }
+
+    fun updateUserLocation(location: LatLng?) {
+        if (userLocation == location) return
+
+        userLocation = location
+        notifyItemRangeChanged(0, itemCount)
     }
 
     private fun formatToDisplayDate(dateTime: String?): String {
@@ -50,7 +61,7 @@ class EarthquakeAdapter(
         }
 
         return try {
-            val outputFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("dd MMM · HH:mm", Locale.ENGLISH)
             val date = parseApiDate(dateTime) ?: return "-"
             outputFormat.format(date)
         } catch (e: Exception) {
@@ -75,6 +86,27 @@ class EarthquakeAdapter(
         }
     }
 
+    private fun formatMagnitude(magnitude: Double?): String {
+        return magnitude?.let { String.format(Locale.US, "%.1f", it) } ?: "-"
+    }
+
+    private fun formatDistance(result: Result): String {
+        val currentLocation = userLocation ?: return "-"
+        val latitude = result.geojson?.coordinates?.getOrNull(1) ?: return "-"
+        val longitude = result.geojson?.coordinates?.getOrNull(0) ?: return "-"
+        val distanceResult = FloatArray(1)
+
+        Location.distanceBetween(
+            currentLocation.latitude,
+            currentLocation.longitude,
+            latitude,
+            longitude,
+            distanceResult
+        )
+
+        return "${(distanceResult[0] / 1000).toLong()} km"
+    }
+
     private fun parseApiDate(dateTime: String): Date? {
         val patterns = listOf(
             "yyyy-MM-dd HH:mm:ss",
@@ -94,8 +126,8 @@ class EarthquakeAdapter(
         return null
     }
 
-    private fun formatTimeDifference(minutes : Long) : String {
-
+    private fun formatTimeDifference(minutes: Long): String {
+        if (minutes == 0L) return "now"
         val hours = minutes / 60
         val remainingMinutes = minutes % 60
 
@@ -108,8 +140,7 @@ class EarthquakeAdapter(
             formattedString.append(" $remainingMinutes m")
         }
 
-        return formattedString.toString().trim()
-
+        return "${formattedString.toString().trim()} ago"
     }
 
     interface OnItemClickListener {

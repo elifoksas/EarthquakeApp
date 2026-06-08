@@ -64,6 +64,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var userLocation: LatLng? = null
     private var allEarthquakes: List<Result> = emptyList()
     private var filteredEarthquakes: List<Result> = emptyList()
+    private var earthquakeAdapter: EarthquakeAdapter? = null
     private var selectedEarthquake: Result? = null
     private lateinit var detailSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var compactDragStartY = 0f
@@ -238,12 +239,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             val lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             if (lastLocation != null) {
                 userLocation = LatLng(lastLocation.latitude, lastLocation.longitude)
+                earthquakeAdapter?.updateUserLocation(userLocation)
                 Log.d("kullanici", userLocation!!.longitude.toString())
             }
 
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
                     userLocation = LatLng(location.latitude, location.longitude)
+                    earthquakeAdapter?.updateUserLocation(userLocation)
                     selectedEarthquake?.let { updateDistance(it) }
                 }
             }
@@ -292,15 +295,17 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         }
 
         if (_binding != null) {
-            binding.recyclerView.adapter = EarthquakeAdapter(
+            earthquakeAdapter = EarthquakeAdapter(
                 requireContext(),
                 filteredEarthquakes,
                 object : EarthquakeAdapter.OnItemClickListener {
                     override fun onItemClick(item: Result) {
                         handleItemClickDetails(item)
                     }
-                }
+                },
+                userLocation
             )
+            binding.recyclerView.adapter = earthquakeAdapter
         }
 
         renderFilteredEarthquakes()
@@ -765,6 +770,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onDestroyView() {
         mMap?.setOnMarkerClickListener(null)
         mMap = null
+        binding.recyclerView.adapter = null
+        earthquakeAdapter = null
         _binding = null
         super.onDestroyView()
     }
