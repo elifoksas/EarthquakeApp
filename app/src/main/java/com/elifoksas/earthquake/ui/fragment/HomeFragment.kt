@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elifoksas.earthquake.R
 import com.elifoksas.earthquake.data.entity.Result
 import com.elifoksas.earthquake.databinding.FragmentHomeBinding
+import com.elifoksas.earthquake.ui.MagnitudeStyle
 import com.elifoksas.earthquake.ui.adapter.EarthquakeAdapter
 import com.elifoksas.earthquake.ui.preference.MagnitudePreference
 import com.elifoksas.earthquake.ui.viewmodel.HomeViewModel
@@ -364,13 +365,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         binding.magTV.text = magnitude
         binding.heroMagnitudeTV.text = magnitude
+        MagnitudeStyle.applyBackground(binding.magTV, item.mag)
+        MagnitudeStyle.applyBackground(binding.magnitudeCircleContainer, item.mag)
+        MagnitudeStyle.applyBackground(binding.compactMagTV, item.mag)
         binding.depthTV.text = formatDepth(item.depth)
         binding.countryTV.text = title
         binding.dateTV.text = formatToDisplayDateOnly(item.date)
         binding.timeTV.text = formatToDisplayTime(item.date)
         binding.detailTimestampTV.text = formatToDisplayDate(item.date)
         binding.minutesPassedTV.text = elapsed
-        binding.shakingStatusTV.text = getMagnitudeStatus(item.mag)
+        binding.shakingStatusTV.text = MagnitudeStyle.getStatus(item.mag)
         binding.detailLocationSubtitleTV.text = subtitle
         binding.summaryLocationTV.text = getNearbyLocationText(item)
         binding.compactMagTV.text = magnitude
@@ -636,17 +640,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         } ?: "-"
 
         return if (formattedDepth == "-") formattedDepth else "$formattedDepth km"
-    }
-
-    private fun getMagnitudeStatus(magnitude: Double?): String {
-        val value = magnitude ?: return "Magnitude unavailable"
-
-        return when {
-            value < 3.0 -> "Light shaking"
-            value < 5.0 -> "Moderate shaking"
-            value < 6.0 -> "Strong shaking"
-            else -> "Severe shaking"
-        }
     }
 
     private fun getLocationSubtitle(item: Result): String {

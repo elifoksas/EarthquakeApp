@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elifoksas.earthquake.data.entity.Result
 import com.elifoksas.earthquake.databinding.EarthquakeItemBinding
+import com.elifoksas.earthquake.ui.MagnitudeStyle
 import com.google.android.gms.maps.model.LatLng
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -39,6 +40,7 @@ class EarthquakeAdapter(
 
         binding.countryTV.text = result.title?.takeUnless { it.isBlank() } ?: "-"
         binding.intensityTV.text = formatMagnitude(result.mag)
+        MagnitudeStyle.applyBackground(binding.intensityTV, result.mag)
         binding.dateTimeTV.text = formattedTime
         binding.minutesPassedTV.text = minutesPassed
         binding.distanceTV.text = formatDistance(result)
