@@ -2,10 +2,10 @@ package com.elifoksas.earthquake.ui.fragment
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -17,79 +17,106 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class WhistleFragment : Fragment() {
 
-    private lateinit var binding: FragmentWhistleBinding
+    private var _binding: FragmentWhistleBinding? = null
+    private val binding get() = _binding!!
     private lateinit var viewModel: WhistleViewModel
-    private lateinit var mediaPlayer: MediaPlayer
+    private var mediaPlayer: MediaPlayer? = null
     private var isPlaying = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempViewModel: WhistleViewModel by viewModels()
         viewModel = tempViewModel
-
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
-        binding = FragmentWhistleBinding.inflate(inflater)
-
-        //whistle sound
+    ): View {
+        _binding = FragmentWhistleBinding.inflate(inflater, container, false)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.whistle_sound).apply {
-            isLooping = true //looping the sound
+            isLooping = true
         }
 
         binding.backButton.setOnClickListener { handleBackButtonClick() }
         binding.whistleButton.setOnClickListener { handleWhistleButtonClick() }
+        renderPlaybackState()
 
         return binding.root
     }
-    private fun handleWhistleButtonClick(){
-        //playing whistle sound when button is clicked
+
+    private fun handleWhistleButtonClick() {
         if (isPlaying) {
-            binding.whistleButton.setBackgroundResource(R.drawable.whistle_off)
-            mediaPlayer.pause()
-            mediaPlayer.seekTo(0)
+            stopWhistle()
         } else {
-            mediaPlayer.start()
-            binding.whistleButton.setBackgroundResource(R.drawable.whistle_on)
+            mediaPlayer?.start()
+            isPlaying = true
         }
-        isPlaying = !isPlaying
+        renderPlaybackState()
     }
 
-    private fun handleBackButtonClick(){
-        //pause whistle if the switch is still checked
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.pause()
-            mediaPlayer.seekTo(0)
-        }
+    private fun handleBackButtonClick() {
+        stopWhistle()
+        findNavController().popBackStack()
+    }
 
+    private fun stopWhistle() {
+        mediaPlayer?.let { player ->
+            if (player.isPlaying) {
+                player.pause()
+                player.seekTo(0)
+            }
+        }
         isPlaying = false
-
-        //navigate back to emergency fragment
-        findNavController().popBackStack() // Navigate back
-
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.stop()
+    private fun renderPlaybackState() {
+        val titleColor = if (isPlaying) {
+            R.color.earthquake_accent
+        } else {
+            R.color.earthquake_text_primary
         }
-        mediaPlayer.release()
 
-        // Ensure WhistleFragment is removed from the back stack
-        findNavController().popBackStack(R.id.whistleFragment, true)
+        binding.statusTitle.setText(
+            if (isPlaying) R.string.whistle_active else R.string.whistle_ready
+        )
+        binding.statusTitle.setTextColor(ContextCompat.getColor(requireContext(), titleColor))
+        binding.statusDescription.setText(
+            if (isPlaying) {
+                R.string.whistle_active_description
+            } else {
+                R.string.whistle_ready_description
+            }
+        )
+        binding.actionText.setText(
+            if (isPlaying) R.string.whistle_stop else R.string.whistle_start
+        )
+        binding.whistleButton.setBackgroundResource(
+            if (isPlaying) {
+                R.drawable.whistle_action_active_background
+            } else {
+                R.drawable.whistle_action_ready_background
+            }
+        )
+        binding.whistleButton.contentDescription = getString(
+            if (isPlaying) R.string.whistle_stop else R.string.whistle_start
+        )
     }
 
     override fun onPause() {
+        stopWhistle()
+        if (_binding != null) {
+            renderPlaybackState()
+        }
         super.onPause()
-
-        // Ensure WhistleFragment is removed from the back stack
-        findNavController().popBackStack(R.id.whistleFragment, true)
     }
 
-
+    override fun onDestroyView() {
+        stopWhistle()
+        mediaPlayer?.release()
+        mediaPlayer = null
+        _binding = null
+        super.onDestroyView()
+    }
 }

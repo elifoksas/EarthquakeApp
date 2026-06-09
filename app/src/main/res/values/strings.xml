@@ -3,6 +3,20 @@
     <string name="Earthquakes">Earthquakes</string>
     <string name="Emergency">Emergency</string>
 
+    <!-- Whistle Strings -->
+    <string name="whistle_title">Emergency Whistle</string>
+    <string name="whistle_subtitle">Use when you need to be found</string>
+    <string name="whistle_ready">Ready</string>
+    <string name="whistle_ready_description">Tap the button to start</string>
+    <string name="whistle_active">Whistle is active</string>
+    <string name="whistle_active_description">Tap again to stop</string>
+    <string name="whistle_start">START WHISTLE</string>
+    <string name="whistle_stop">STOP WHISTLE</string>
+    <string name="whistle_helper">Plays a loud, continuous whistle sound</string>
+    <string name="whistle_volume_title">Keep your volume up</string>
+    <string name="whistle_volume_description">Make sure your media volume is high enough to be heard.</string>
+    <string name="whistle_back">Back to emergency tools</string>
+
 
     <!-- Settings Strings -->
     <string name="Settings">Settings</string>
