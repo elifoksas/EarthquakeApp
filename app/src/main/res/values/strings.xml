@@ -17,6 +17,12 @@
     <string name="whistle_volume_description">Make sure your media volume is high enough to be heard.</string>
     <string name="whistle_back">Back to emergency tools</string>
 
+    <!-- Earthquake Safety Strings -->
+    <string name="information_title">During an Earthquake</string>
+    <string name="information_subtitle">Simple actions that can save lives</string>
+    <string name="information_summary_title">Stay calm and act quickly</string>
+    <string name="information_summary_description">Follow these steps while the shaking continues.</string>
+    <string name="information_back">Back to emergency tools</string>
 
     <!-- Settings Strings -->
     <string name="Settings">Settings</string>
