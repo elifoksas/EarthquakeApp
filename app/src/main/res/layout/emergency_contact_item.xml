@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/whistle_card_background"
+    android:minHeight="76dp"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/contactName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/earthquake_text_primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/contactNumber"
+        app:layout_constraintEnd_toStartOf="@id/callButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Family contact" />
+
+    <TextView
+        android:id="@+id/contactNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/earthquake_text_secondary"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/callButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contactName"
+        tools:text="+90 555 555 55 55" />
+
+    <ImageButton
+        android:id="@+id/callButton"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/whistle_status_icon_background"
+        android:contentDescription="@string/emergency_contacts_call"
+        android:padding="10dp"
+        android:src="@drawable/ic_phone_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/earthquake_accent" />
+
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/earthquake_detail_icon_button_background"
+        android:contentDescription="@string/emergency_contacts_edit"
+        android:padding="10dp"
+        android:src="@drawable/ic_edit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deleteButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/earthquake_text_secondary" />
+
+    <ImageButton
+        android:id="@+id/deleteButton"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/earthquake_detail_icon_button_background"
+        android:contentDescription="@string/emergency_contacts_delete"
+        android:padding="10dp"
+        android:src="@drawable/ic_delete_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/earthquake_accent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

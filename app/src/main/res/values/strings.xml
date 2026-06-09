@@ -24,6 +24,53 @@
     <string name="information_summary_description">Follow these steps while the shaking continues.</string>
     <string name="information_back">Back to emergency tools</string>
 
+    <!-- Emergency Numbers Strings -->
+    <string name="emergency_numbers_title">Emergency Call</string>
+    <string name="emergency_numbers_subtitle">Official numbers for your current country</string>
+    <string name="emergency_numbers_back">Back to emergency tools</string>
+    <string name="emergency_numbers_country_label">Current country</string>
+    <string name="emergency_numbers_change">Change</string>
+    <string name="emergency_numbers_automatic">Automatic</string>
+    <string name="emergency_numbers_manual">Selected manually</string>
+    <string name="emergency_numbers_country_unknown">Select a country</string>
+    <string name="emergency_numbers_automatic_option">Automatic (%1$s)</string>
+    <string name="emergency_numbers_official_services">Official emergency services</string>
+    <string name="emergency_numbers_unavailable">A verified emergency number is not available for this region. Choose another country or use your device’s emergency dialer.</string>
+    <string name="emergency_numbers_call">Call</string>
+    <string name="emergency_numbers_tell_operator_title">What to tell the operator</string>
+    <string name="emergency_numbers_tell_operator_body">• What happened\n• Your exact location\n• How many people are affected\n• Your name and phone number</string>
+    <string name="emergency_numbers_source">Source: %1$s · Verified %2$s</string>
+    <string name="emergency_numbers_source_itu">ITU E.129</string>
+    <string name="emergency_numbers_source_other">Emergency metadata</string>
+    <string name="emergency_numbers_category_general">All emergency services</string>
+    <string name="emergency_numbers_category_police">Police</string>
+    <string name="emergency_numbers_category_fire">Fire</string>
+    <string name="emergency_numbers_category_ambulance">Ambulance</string>
+    <string name="emergency_numbers_no_dialer">No phone app is available on this device.</string>
+    <string name="emergency_contacts_title">Personal emergency contacts</string>
+    <string name="emergency_contacts_count">%1$d of %2$d saved</string>
+    <string name="emergency_contacts_add">Add contact</string>
+    <string name="emergency_contacts_add_short">Add</string>
+    <string name="emergency_contacts_empty">Add up to three trusted people for quick access during an emergency.</string>
+    <string name="emergency_contacts_add_title">Add emergency contact</string>
+    <string name="emergency_contacts_add_from_phone">Choose from contacts</string>
+    <string name="emergency_contacts_add_manually">Enter manually</string>
+    <string name="emergency_contacts_name">Name</string>
+    <string name="emergency_contacts_phone">Phone number</string>
+    <string name="emergency_contacts_save">Save</string>
+    <string name="emergency_contacts_cancel">Cancel</string>
+    <string name="emergency_contacts_edit_title">Edit emergency contact</string>
+    <string name="emergency_contacts_call">Call contact</string>
+    <string name="emergency_contacts_edit">Edit contact</string>
+    <string name="emergency_contacts_delete">Delete contact</string>
+    <string name="emergency_contacts_delete_title">Delete contact?</string>
+    <string name="emergency_contacts_delete_message">Remove %1$s from your emergency contacts?</string>
+    <string name="emergency_contacts_invalid">Enter both a name and a valid phone number.</string>
+    <string name="emergency_contacts_duplicate">This phone number is already saved.</string>
+    <string name="emergency_contacts_limit">You can save up to three emergency contacts.</string>
+    <string name="emergency_contacts_read_failed">This contact does not contain a readable phone number.</string>
+    <string name="emergency_contacts_picker_unavailable">No contacts app is available on this device.</string>
+
     <!-- Settings Strings -->
     <string name="Settings">Settings</string>
     <string name="SettingsCategoryNotifications">Notifications</string>

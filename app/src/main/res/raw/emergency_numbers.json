@@ -1,0 +1,6241 @@
+{
+  "generatedAt": "2026-06-09",
+  "profiles": [
+    {
+      "isoCode": "AC",
+      "countryName": "Ascension Island",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "AD",
+      "countryName": "Andorra",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AE",
+      "countryName": "United Arab Emirates",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "997",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "998",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AF",
+      "countryName": "Afghanistan",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AG",
+      "countryName": "Antigua & Barbuda",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AI",
+      "countryName": "Anguilla",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "AL",
+      "countryName": "Albania",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "127",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "128",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "129",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2014-04-09"
+    },
+    {
+      "isoCode": "AM",
+      "countryName": "Armenia",
+      "services": [
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AO",
+      "countryName": "Angola",
+      "services": [
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AQ",
+      "countryName": "Antarctica",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "AR",
+      "countryName": "Argentina",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "107",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AS",
+      "countryName": "American Samoa",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "AT",
+      "countryName": "Austria",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "133",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "144",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AU",
+      "countryName": "Australia",
+      "services": [
+        {
+          "number": "106",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AW",
+      "countryName": "Aruba",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "AX",
+      "countryName": "Åland Islands",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "AZ",
+      "countryName": "Azerbaijan",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BA",
+      "countryName": "Bosnia & Herzegovina",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "116117",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "123",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "124",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2017-03-21"
+    },
+    {
+      "isoCode": "BB",
+      "countryName": "Barbados",
+      "services": [
+        {
+          "number": "211",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "311",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "511",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BD",
+      "countryName": "Bangladesh",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "BE",
+      "countryName": "Belgium",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BF",
+      "countryName": "Burkina Faso",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "135",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "16",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "17",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "3535",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-07-31"
+    },
+    {
+      "isoCode": "BG",
+      "countryName": "Bulgaria",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "150",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "160",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "166",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BH",
+      "countryName": "Bahrain",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BI",
+      "countryName": "Burundi",
+      "services": [
+        {
+          "number": "111",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "114",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-08-01"
+    },
+    {
+      "isoCode": "BJ",
+      "countryName": "Benin",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-09-12"
+    },
+    {
+      "isoCode": "BL",
+      "countryName": "St. Barthélemy",
+      "services": [
+        {
+          "number": "18",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "BM",
+      "countryName": "Bermuda",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "BN",
+      "countryName": "Brunei",
+      "services": [
+        {
+          "number": "991",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "BO",
+      "countryName": "Bolivia",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "160",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BQ",
+      "countryName": "Caribbean Netherlands",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "BR",
+      "countryName": "Brazil",
+      "services": [
+        {
+          "number": "190",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "192",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "193",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BS",
+      "countryName": "Bahamas",
+      "services": [
+        {
+          "number": "919",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BT",
+      "countryName": "Bhutan",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BV",
+      "countryName": "Bouvet Island",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "BW",
+      "countryName": "Botswana",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "913",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "914",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "920",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "922",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "923",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "924",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "925",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "926",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "991",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "992",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "993",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "994",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "996",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "997",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "998",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-09-28"
+    },
+    {
+      "isoCode": "BY",
+      "countryName": "Belarus",
+      "services": [
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "BZ",
+      "countryName": "Belize",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "990",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2022-06-14"
+    },
+    {
+      "isoCode": "CA",
+      "countryName": "Canada",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CC",
+      "countryName": "Cocos (Keeling) Islands",
+      "services": [
+        {
+          "number": "000",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "CD",
+      "countryName": "Congo - Kinshasa",
+      "services": [
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "150",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-07-12"
+    },
+    {
+      "isoCode": "CF",
+      "countryName": "Central African Republic",
+      "services": [
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "1220",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CG",
+      "countryName": "Congo - Brazzaville",
+      "services": [
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CH",
+      "countryName": "Switzerland",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "144",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "145",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2013-06-07"
+    },
+    {
+      "isoCode": "CI",
+      "countryName": "Côte d’Ivoire",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "170",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "180",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "185",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CK",
+      "countryName": "Cook Islands",
+      "services": [
+        {
+          "number": "996",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "CL",
+      "countryName": "Chile",
+      "services": [
+        {
+          "number": "131",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "132",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "133",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CM",
+      "countryName": "Cameroon",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "120",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-12-22"
+    },
+    {
+      "isoCode": "CN",
+      "countryName": "China",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "120",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CO",
+      "countryName": "Colombia",
+      "services": [
+        {
+          "number": "123",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CR",
+      "countryName": "Costa Rica",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CU",
+      "countryName": "Cuba",
+      "services": [
+        {
+          "number": "104",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "105",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "106",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CV",
+      "countryName": "Cape Verde",
+      "services": [
+        {
+          "number": "130",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "131",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "132",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CW",
+      "countryName": "Curaçao",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "CX",
+      "countryName": "Christmas Island",
+      "services": [
+        {
+          "number": "000",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "CY",
+      "countryName": "Cyprus",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "1400",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "199",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "CZ",
+      "countryName": "Czechia",
+      "services": [
+        {
+          "number": "150",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "155",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "158",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "DE",
+      "countryName": "Germany",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "DJ",
+      "countryName": "Djibouti",
+      "services": [
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-07-16"
+    },
+    {
+      "isoCode": "DK",
+      "countryName": "Denmark",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "DM",
+      "countryName": "Dominica",
+      "services": [
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "DO",
+      "countryName": "Dominican Republic",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "DZ",
+      "countryName": "Algeria",
+      "services": [
+        {
+          "number": "103",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "104",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "1055",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "1070",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "1548",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "17",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-04-08"
+    },
+    {
+      "isoCode": "EC",
+      "countryName": "Ecuador",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "131",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "EE",
+      "countryName": "Estonia",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "EG",
+      "countryName": "Egypt",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "123",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "180",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-12-05"
+    },
+    {
+      "isoCode": "EH",
+      "countryName": "Western Sahara",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "ER",
+      "countryName": "Eritrea",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "114",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-08-01"
+    },
+    {
+      "isoCode": "ES",
+      "countryName": "Spain",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "061",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "091",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2013-06-20"
+    },
+    {
+      "isoCode": "ET",
+      "countryName": "Ethiopia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "907",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "939",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "991",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-06-05"
+    },
+    {
+      "isoCode": "FI",
+      "countryName": "Finland",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "FJ",
+      "countryName": "Fiji",
+      "services": [
+        {
+          "number": "000",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "917",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "919",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "FK",
+      "countryName": "Falkland Islands",
+      "services": [
+        {
+          "number": "999",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "FM",
+      "countryName": "Micronesia",
+      "services": [
+        {
+          "number": "111",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "FO",
+      "countryName": "Faroe Islands",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "FR",
+      "countryName": "France",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "15",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "17",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2015-09-02"
+    },
+    {
+      "isoCode": "GA",
+      "countryName": "Gabon",
+      "services": [
+        {
+          "number": "1300",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "1333",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "1334",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "1466",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "1488",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "1722",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-05-16"
+    },
+    {
+      "isoCode": "GB",
+      "countryName": "United Kingdom",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "GD",
+      "countryName": "Grenada",
+      "services": [
+        {
+          "number": "434",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "724",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "774",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "GE",
+      "countryName": "Georgia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "GF",
+      "countryName": "French Guiana",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "GG",
+      "countryName": "Guernsey",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "GH",
+      "countryName": "Ghana",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "191",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "192",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "193",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-07-19"
+    },
+    {
+      "isoCode": "GI",
+      "countryName": "Gibraltar",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "GL",
+      "countryName": "Greenland",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "GM",
+      "countryName": "Gambia",
+      "services": [
+        {
+          "number": "1025",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-01-09"
+    },
+    {
+      "isoCode": "GN",
+      "countryName": "Guinea",
+      "services": [
+        {
+          "number": "115",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "125",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "126",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "127",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "128",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "129",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "130",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "135",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "136",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "146",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-01-08"
+    },
+    {
+      "isoCode": "GP",
+      "countryName": "Guadeloupe",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "GQ",
+      "countryName": "Equatorial Guinea",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "114",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "GR",
+      "countryName": "Greece",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "166",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "199",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "GS",
+      "countryName": "South Georgia & South Sandwich Islands",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "GT",
+      "countryName": "Guatemala",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "120",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "123",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "128",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "GU",
+      "countryName": "Guam",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "GW",
+      "countryName": "Guinea-Bissau",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "109",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "110",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "121",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-06-16"
+    },
+    {
+      "isoCode": "GY",
+      "countryName": "Guyana",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "912",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "913",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-08-17"
+    },
+    {
+      "isoCode": "HK",
+      "countryName": "Hong Kong SAR China",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "HM",
+      "countryName": "Heard & McDonald Islands",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "HN",
+      "countryName": "Honduras",
+      "services": [
+        {
+          "number": "198",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "199",
+          "categories": [
+            "AMBULANCE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "HR",
+      "countryName": "Croatia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "192",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "93",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "94",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "HT",
+      "countryName": "Haiti",
+      "services": [
+        {
+          "number": "114",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "HU",
+      "countryName": "Hungary",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "104",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "105",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "107",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2015-02-10"
+    },
+    {
+      "isoCode": "ID",
+      "countryName": "Indonesia",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "IE",
+      "countryName": "Ireland",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "IL",
+      "countryName": "Israel",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "IM",
+      "countryName": "Isle of Man",
+      "services": [
+        {
+          "number": "999",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "IN",
+      "countryName": "India",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "IO",
+      "countryName": "British Indian Ocean Territory",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "IQ",
+      "countryName": "Iraq",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "104",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "IR",
+      "countryName": "Iran",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "125",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "IS",
+      "countryName": "Iceland",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "IT",
+      "countryName": "Italy",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "JE",
+      "countryName": "Jersey",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "JM",
+      "countryName": "Jamaica",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "JO",
+      "countryName": "Jordan",
+      "services": [
+        {
+          "number": "191",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "JP",
+      "countryName": "Japan",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "KE",
+      "countryName": "Kenya",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-12-08"
+    },
+    {
+      "isoCode": "KG",
+      "countryName": "Kyrgyzstan",
+      "services": [
+        {
+          "number": "161",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "KH",
+      "countryName": "Cambodia",
+      "services": [
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "KI",
+      "countryName": "Kiribati",
+      "services": [
+        {
+          "number": "192",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "193",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "194",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "195",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "KM",
+      "countryName": "Comoros",
+      "services": [
+        {
+          "number": "111",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "1717",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "771701",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "772037",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "773260",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "774401",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-02-21"
+    },
+    {
+      "isoCode": "KN",
+      "countryName": "St. Kitts & Nevis",
+      "services": [
+        {
+          "number": "333",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "KP",
+      "countryName": "North Korea",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "KR",
+      "countryName": "South Korea",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "KW",
+      "countryName": "Kuwait",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "KY",
+      "countryName": "Cayman Islands",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "KZ",
+      "countryName": "Kazakhstan",
+      "services": [
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "LA",
+      "countryName": "Laos",
+      "services": [
+        {
+          "number": "190",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "LB",
+      "countryName": "Lebanon",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "140",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "160",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "175",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "LC",
+      "countryName": "St. Lucia",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "LI",
+      "countryName": "Liechtenstein",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "144",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "LK",
+      "countryName": "Sri Lanka",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "LR",
+      "countryName": "Liberia",
+      "services": [
+        {
+          "number": "114",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "LS",
+      "countryName": "Lesotho",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-06-01"
+    },
+    {
+      "isoCode": "LT",
+      "countryName": "Lithuania",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "01",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "02",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "03",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "LU",
+      "countryName": "Luxembourg",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "LV",
+      "countryName": "Latvia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "FIRE",
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "01",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "02",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "03",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "110",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2013-12-18"
+    },
+    {
+      "isoCode": "LY",
+      "countryName": "Libya",
+      "services": [
+        {
+          "number": "190",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "191",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "193",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "MA",
+      "countryName": "Morocco",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "141",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "177",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "19",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-06-11"
+    },
+    {
+      "isoCode": "MC",
+      "countryName": "Monaco",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "17",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2014-09-03"
+    },
+    {
+      "isoCode": "MD",
+      "countryName": "Moldova",
+      "services": [
+        {
+          "number": "901",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "902",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "903",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "ME",
+      "countryName": "Montenegro",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "122",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "123",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "124",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "MF",
+      "countryName": "St. Martin",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MG",
+      "countryName": "Madagascar",
+      "services": [
+        {
+          "number": "115",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-07-14"
+    },
+    {
+      "isoCode": "MH",
+      "countryName": "Marshall Islands",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MK",
+      "countryName": "North Macedonia",
+      "services": [
+        {
+          "number": "192",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "193",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "194",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "ML",
+      "countryName": "Mali",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "15",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "17",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2016-02-17"
+    },
+    {
+      "isoCode": "MM",
+      "countryName": "Myanmar (Burma)",
+      "services": [
+        {
+          "number": "199",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MN",
+      "countryName": "Mongolia",
+      "services": [
+        {
+          "number": "105",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "MO",
+      "countryName": "Macao SAR China",
+      "services": [
+        {
+          "number": "999",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MP",
+      "countryName": "Northern Mariana Islands",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MQ",
+      "countryName": "Martinique",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MR",
+      "countryName": "Mauritania",
+      "services": [
+        {
+          "number": "101",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-11-14"
+    },
+    {
+      "isoCode": "MS",
+      "countryName": "Montserrat",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MT",
+      "countryName": "Malta",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "116117",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "191",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "196",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "199",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "MU",
+      "countryName": "Mauritius",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "114",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "995",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-09-01"
+    },
+    {
+      "isoCode": "MV",
+      "countryName": "Maldives",
+      "services": [
+        {
+          "number": "102",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "119",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "MW",
+      "countryName": "Malawi",
+      "services": [
+        {
+          "number": "990",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "997",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "998",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "MX",
+      "countryName": "Mexico",
+      "services": [
+        {
+          "number": "060",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "MY",
+      "countryName": "Malaysia",
+      "services": [
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "MZ",
+      "countryName": "Mozambique",
+      "services": [
+        {
+          "number": "111",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "114",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-09-26"
+    },
+    {
+      "isoCode": "NA",
+      "countryName": "Namibia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "10111",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-07-25"
+    },
+    {
+      "isoCode": "NC",
+      "countryName": "New Caledonia",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "NE",
+      "countryName": "Niger",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "17",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2020-05-27"
+    },
+    {
+      "isoCode": "NF",
+      "countryName": "Norfolk Island",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "NG",
+      "countryName": "Nigeria",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-11-06"
+    },
+    {
+      "isoCode": "NI",
+      "countryName": "Nicaragua",
+      "services": [
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "120",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "128",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "NL",
+      "countryName": "Netherlands",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "NO",
+      "countryName": "Norway",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "NP",
+      "countryName": "Nepal",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "NR",
+      "countryName": "Nauru",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "NU",
+      "countryName": "Niue",
+      "services": [
+        {
+          "number": "999",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "NZ",
+      "countryName": "New Zealand",
+      "services": [
+        {
+          "number": "111",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "OM",
+      "countryName": "Oman",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "PA",
+      "countryName": "Panama",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "104",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "PE",
+      "countryName": "Peru",
+      "services": [
+        {
+          "number": "111",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "105",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "106",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "116",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "PF",
+      "countryName": "French Polynesia",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "PG",
+      "countryName": "Papua New Guinea",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "PH",
+      "countryName": "Philippines",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "PK",
+      "countryName": "Pakistan",
+      "services": [
+        {
+          "number": "1122",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "15",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "16",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "PL",
+      "countryName": "Poland",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "986",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "997",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "998",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2014-03-14"
+    },
+    {
+      "isoCode": "PM",
+      "countryName": "St. Pierre & Miquelon",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "PN",
+      "countryName": "Pitcairn Islands",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "PR",
+      "countryName": "Puerto Rico",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "PS",
+      "countryName": "Palestinian Territories",
+      "services": [
+        {
+          "number": "100",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "PT",
+      "countryName": "Portugal",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "PW",
+      "countryName": "Palau",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "PY",
+      "countryName": "Paraguay",
+      "services": [
+        {
+          "number": "128",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "QA",
+      "countryName": "Qatar",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "RE",
+      "countryName": "Réunion",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "RO",
+      "countryName": "Romania",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "RS",
+      "countryName": "Serbia",
+      "services": [
+        {
+          "number": "13",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "192",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "193",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "194",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "2012",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "92",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "93",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "94",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "RU",
+      "countryName": "Russia",
+      "services": [
+        {
+          "number": "01",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "RW",
+      "countryName": "Rwanda",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-03-26"
+    },
+    {
+      "isoCode": "SA",
+      "countryName": "Saudi Arabia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "937",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2013-04-09"
+    },
+    {
+      "isoCode": "SB",
+      "countryName": "Solomon Islands",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "988",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SC",
+      "countryName": "Seychelles",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "133",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "141",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "151",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2021-11-18"
+    },
+    {
+      "isoCode": "SD",
+      "countryName": "Sudan",
+      "services": [
+        {
+          "number": "333",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "444",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "777",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "998",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-11-13"
+    },
+    {
+      "isoCode": "SE",
+      "countryName": "Sweden",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "GENERAL",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SG",
+      "countryName": "Singapore",
+      "services": [
+        {
+          "number": "995",
+          "categories": [
+            "AMBULANCE",
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2019-12-03"
+    },
+    {
+      "isoCode": "SH",
+      "countryName": "St. Helena",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "SI",
+      "countryName": "Slovenia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SJ",
+      "countryName": "Svalbard & Jan Mayen",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "SK",
+      "countryName": "Slovakia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "150",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "155",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "158",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SL",
+      "countryName": "Sierra Leone",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "180",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "900",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-06-26"
+    },
+    {
+      "isoCode": "SM",
+      "countryName": "San Marino",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SN",
+      "countryName": "Senegal",
+      "services": [
+        {
+          "number": "123",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "1515",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "17",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "18",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-11-14"
+    },
+    {
+      "isoCode": "SO",
+      "countryName": "Somalia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "114",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "888",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "991",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-03-27"
+    },
+    {
+      "isoCode": "SR",
+      "countryName": "Suriname",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "111",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SS",
+      "countryName": "South Sudan",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "333",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "555",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "777",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-07-25"
+    },
+    {
+      "isoCode": "ST",
+      "countryName": "São Tomé & Príncipe",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-04-02"
+    },
+    {
+      "isoCode": "SV",
+      "countryName": "El Salvador",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        },
+        {
+          "number": "913",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SX",
+      "countryName": "Sint Maarten",
+      "services": [
+        {
+          "number": "919",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "SY",
+      "countryName": "Syria",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "SZ",
+      "countryName": "Eswatini",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "933",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "975",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "977",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-09-28"
+    },
+    {
+      "isoCode": "TA",
+      "countryName": "Tristan da Cunha",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TC",
+      "countryName": "Turks & Caicos Islands",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TD",
+      "countryName": "Chad",
+      "services": [
+        {
+          "number": "114",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-04-16"
+    },
+    {
+      "isoCode": "TF",
+      "countryName": "French Southern Territories",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TG",
+      "countryName": "Togo",
+      "services": [
+        {
+          "number": "111",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "118",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "172",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-11-08"
+    },
+    {
+      "isoCode": "TH",
+      "countryName": "Thailand",
+      "services": [
+        {
+          "number": "1669",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "191",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "199",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "TJ",
+      "countryName": "Tajikistan",
+      "services": [
+        {
+          "number": "101",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TK",
+      "countryName": "Tokelau",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TL",
+      "countryName": "Timor-Leste",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TM",
+      "countryName": "Turkmenistan",
+      "services": [
+        {
+          "number": "01",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TN",
+      "countryName": "Tunisia",
+      "services": [
+        {
+          "number": "190",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "191",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "197",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "199",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2024-04-04"
+    },
+    {
+      "isoCode": "TO",
+      "countryName": "Tonga",
+      "services": [
+        {
+          "number": "922",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "927",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "928",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "933",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "TR",
+      "countryName": "Türkiye",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL",
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.112.gov.tr/",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TT",
+      "countryName": "Trinidad & Tobago",
+      "services": [
+        {
+          "number": "811",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "990",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "TV",
+      "countryName": "Tuvalu",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TW",
+      "countryName": "Taiwan",
+      "services": [
+        {
+          "number": "110",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "TZ",
+      "countryName": "Tanzania",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "114",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "115",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "117",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "199",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-11-16"
+    },
+    {
+      "isoCode": "UA",
+      "countryName": "Ukraine",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "101",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "102",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "103",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "UG",
+      "countryName": "Uganda",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "999",
+          "categories": [
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-07-21"
+    },
+    {
+      "isoCode": "UM",
+      "countryName": "U.S. Outlying Islands",
+      "services": [],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "US",
+      "countryName": "United States",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "UY",
+      "countryName": "Uruguay",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "UZ",
+      "countryName": "Uzbekistan",
+      "services": [
+        {
+          "number": "01",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "VA",
+      "countryName": "Vatican City",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "VC",
+      "countryName": "St. Vincent & Grenadines",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "VE",
+      "countryName": "Venezuela",
+      "services": [
+        {
+          "number": "171",
+          "categories": [
+            "AMBULANCE",
+            "FIRE",
+            "POLICE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "VG",
+      "countryName": "British Virgin Islands",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "VI",
+      "countryName": "U.S. Virgin Islands",
+      "services": [
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "VN",
+      "countryName": "Vietnam",
+      "services": [
+        {
+          "number": "113",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "VU",
+      "countryName": "Vanuatu",
+      "services": [
+        {
+          "number": "11",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "112",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "113",
+          "categories": [
+            "FIRE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "WF",
+      "countryName": "Wallis & Futuna",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "WS",
+      "countryName": "Samoa",
+      "services": [
+        {
+          "number": "994",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "995",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "996",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2012-04-03"
+    },
+    {
+      "isoCode": "XK",
+      "countryName": "Kosovo",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "192",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "193",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "194",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2017-03-15"
+    },
+    {
+      "isoCode": "YE",
+      "countryName": "Yemen",
+      "services": [
+        {
+          "number": "191",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "YT",
+      "countryName": "Mayotte",
+      "services": [
+        {
+          "number": "15",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://raw.githubusercontent.com/google/libphonenumber/master/resources/ShortNumberMetadata.xml",
+      "verifiedAt": "2026-06-09"
+    },
+    {
+      "isoCode": "ZA",
+      "countryName": "South Africa",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "10111",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "10177",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-06-07"
+    },
+    {
+      "isoCode": "ZM",
+      "countryName": "Zambia",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "902",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "905",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "990",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "991",
+          "categories": [
+            "POLICE"
+          ]
+        },
+        {
+          "number": "992",
+          "categories": [
+            "AMBULANCE"
+          ]
+        },
+        {
+          "number": "993",
+          "categories": [
+            "FIRE"
+          ]
+        },
+        {
+          "number": "995",
+          "categories": [
+            "AMBULANCE"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-09-28"
+    },
+    {
+      "isoCode": "ZW",
+      "countryName": "Zimbabwe",
+      "services": [
+        {
+          "number": "112",
+          "categories": [
+            "GENERAL"
+          ]
+        },
+        {
+          "number": "911",
+          "categories": [
+            "GENERAL"
+          ]
+        }
+      ],
+      "sourceUrl": "https://www.itu.int/net/itu-t/inrdb/e129_important_numbers.aspx",
+      "verifiedAt": "2023-09-27"
+    }
+  ]
+}

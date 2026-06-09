@@ -58,6 +58,9 @@ class EmergencyFragment : Fragment() {
 
             "What to Do During an Earthquake?" ->
                 navigateToInformationFragment()
+
+            "Emergency Numbers" ->
+                navigateToEmergencyNumbersFragment()
             }
 
     }
@@ -80,6 +83,18 @@ class EmergencyFragment : Fragment() {
             null,
             navOptions {
                 popUpTo(R.id.informationFragment) {
+                    inclusive = false
+                }
+            }
+        )
+    }
+
+    private fun navigateToEmergencyNumbersFragment() {
+        findNavController().navigate(
+            R.id.action_emergencyFragment_to_emergencyNumbersFragment,
+            null,
+            navOptions {
+                popUpTo(R.id.emergencyFragment) {
                     inclusive = false
                 }
             }
