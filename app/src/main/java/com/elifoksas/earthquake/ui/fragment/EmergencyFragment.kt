@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elifoksas.earthquake.R
+import com.elifoksas.earthquake.data.entity.EmergencyDestination
 import com.elifoksas.earthquake.data.entity.EmergencyItem
 import com.elifoksas.earthquake.databinding.FragmentEmergencyBinding
 import com.elifoksas.earthquake.ui.adapter.EmergencyAdapter
@@ -52,16 +53,12 @@ class EmergencyFragment : Fragment() {
     }
 
     private fun handleItemClick(item: EmergencyItem){
-        when(item.emergencyName){
-            "Whistle" ->
-                navigateToWhistleFragment()
-
-            "What to Do During an Earthquake?" ->
-                navigateToInformationFragment()
-
-            "Emergency Numbers" ->
-                navigateToEmergencyNumbersFragment()
-            }
+        when (item.destination) {
+            EmergencyDestination.EMERGENCY_CALL -> navigateToEmergencyNumbersFragment()
+            EmergencyDestination.WHISTLE -> navigateToWhistleFragment()
+            EmergencyDestination.INFORMATION -> navigateToInformationFragment()
+            EmergencyDestination.EMERGENCY_BAG -> Unit
+        }
 
     }
 

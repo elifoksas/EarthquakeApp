@@ -3,6 +3,19 @@
     <string name="Earthquakes">Earthquakes</string>
     <string name="Emergency">Emergency</string>
 
+    <!-- Emergency Tools Strings -->
+    <string name="emergency_tools_title">Emergency Tools</string>
+    <string name="emergency_tools_subtitle">Quick access when every second matters</string>
+    <string name="emergency_tools_section">TOOLS</string>
+    <string name="emergency_tool_call_title">Emergency Call</string>
+    <string name="emergency_tool_call_description">Official numbers and trusted contacts</string>
+    <string name="emergency_tool_whistle_title">Emergency Whistle</string>
+    <string name="emergency_tool_whistle_description">Make a loud sound to help rescuers find you</string>
+    <string name="emergency_tool_information_title">During an Earthquake</string>
+    <string name="emergency_tool_information_description">Simple actions that can save lives</string>
+    <string name="emergency_tool_bag_title">Emergency Bag</string>
+    <string name="emergency_tool_bag_description">Prepare the essentials before disaster strikes</string>
+
     <!-- Whistle Strings -->
     <string name="whistle_title">Emergency Whistle</string>
     <string name="whistle_subtitle">Use when you need to be found</string>

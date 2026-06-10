@@ -21,7 +21,8 @@ import com.elifoksas.earthquake.databinding.EmergencyItemBinding
         val item = emergencyList[position]
 
         binding.imageView.setImageResource(item.emergencyPicture)
-        binding.textView.text = item.emergencyName
+        binding.titleText.setText(item.emergencyName)
+        binding.descriptionText.setText(item.emergencyDescription)
 
        holder.itemView.setOnClickListener{
            listener.onItemClick(item)
