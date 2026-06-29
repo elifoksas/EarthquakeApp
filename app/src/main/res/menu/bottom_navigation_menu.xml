@@ -4,15 +4,15 @@
     <item
         android:id="@+id/homeFragment"
         android:title="@string/Earthquakes"
-        android:icon="@drawable/earthquake"/>
+        android:icon="@drawable/ic_nav_earthquakes" />
 
     <item
         android:id="@+id/emergencyFragment"
         android:title="@string/Emergency"
-        android:icon="@drawable/emergency"/>
+        android:icon="@drawable/ic_nav_emergency" />
 
     <item
         android:id="@+id/settingsFragment"
         android:title="@string/Settings"
-        android:icon="@drawable/settings"/>
+        android:icon="@drawable/ic_nav_settings" />
 </menu>

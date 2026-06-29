@@ -1,28 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/whistle_card_background"
+    android:minHeight="108dp"
+    android:padding="14dp">
 
-    <ImageView
-        android:id="@+id/informationImgView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/inf_two"
-        app:layout_constraintEnd_toEndOf="parent"
+    <FrameLayout
+        android:id="@+id/illustrationContainer"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:background="@drawable/information_illustration_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/informationImgView"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/inf_four" />
+
+        <TextView
+            android:id="@+id/stepNumber"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="top|start"
+            android:background="@drawable/information_step_number_background"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="1" />
+    </FrameLayout>
 
     <TextView
-        android:id="@+id/informationTV"
-        android:layout_width="wrap_content"
+        android:id="@+id/informationTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:layout_marginStart="14dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/earthquake_text_primary"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:padding="20dp"
-        android:text="information"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/informationImgView" />
+        app:layout_constraintBottom_toTopOf="@id/informationDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/illustrationContainer"
+        app:layout_constraintTop_toTopOf="@id/illustrationContainer"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Drop, cover and hold on" />
+
+    <TextView
+        android:id="@+id/informationDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="6dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/earthquake_text_secondary"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/illustrationContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/illustrationContainer"
+        app:layout_constraintTop_toBottomOf="@id/informationTitle"
+        tools:text="Get under sturdy furniture and protect your head." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

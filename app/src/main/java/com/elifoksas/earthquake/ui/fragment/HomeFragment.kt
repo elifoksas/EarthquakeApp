@@ -3,16 +3,25 @@ package com.elifoksas.earthquake.ui.fragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.Fade
+import android.transition.TransitionManager
+import android.transition.TransitionSet
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,8 +30,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elifoksas.earthquake.R
 import com.elifoksas.earthquake.data.entity.Result
 import com.elifoksas.earthquake.databinding.FragmentHomeBinding
+import com.elifoksas.earthquake.ui.DistanceFormatter
+import com.elifoksas.earthquake.ui.EarthquakeFilter
+import com.elifoksas.earthquake.ui.MagnitudeStyle
 import com.elifoksas.earthquake.ui.adapter.EarthquakeAdapter
 import com.elifoksas.earthquake.ui.preference.MagnitudePreference
+import com.elifoksas.earthquake.ui.preference.SettingsPreferences
 import com.elifoksas.earthquake.ui.viewmodel.HomeViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -30,9 +43,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -53,7 +68,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var userLocation: LatLng? = null
     private var allEarthquakes: List<Result> = emptyList()
     private var filteredEarthquakes: List<Result> = emptyList()
+    private var earthquakeAdapter: EarthquakeAdapter? = null
     private var selectedEarthquake: Result? = null
+    private lateinit var detailSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private var compactDragStartY = 0f
+    private var compactDragHasExpanded = false
+    private var isDetailHeaderMagnitudeVisible = false
+    private var lastDetailSheetSlideOffset = -1f
+    private var isExpandingDetailSheet = false
 
     private val locationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -64,8 +86,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     companion object {
-        private const val MAPS_TYPE_KEY = "MapsType"
-        private const val DEFAULT_MAPS_TYPE = "normal"
+        private const val SELECTED_EARTHQUAKE_ZOOM = 10f
+        private const val MIN_VISIBLE_MAP_HEIGHT_DP = 180
+        private const val MAP_FOCUS_EXTRA_PADDING_DP = 24
+        private const val LIST_SINGLE_EARTHQUAKE_ZOOM = 6f
+        private const val LIST_MAP_EDGE_PADDING_DP = 40
+        private const val COMPACT_EXPAND_DRAG_THRESHOLD_DP = 24
+        private const val DETAIL_SHEET_PEEK_HEIGHT_DP = 92
+        private const val DETAIL_HEADER_MAG_SLIDE_THRESHOLD = 0.92f
+        private const val DETAIL_EXPAND_SNAP_THRESHOLD = 0.68f
+        private const val DETAIL_SETTLE_SNAP_DELAY_MS = 180L
+        private const val COMPACT_EXPAND_CONFIRM_DELAY_MS = 260L
+        private const val DETAIL_HEADER_MAG_ANIMATION_DURATION_MS = 260L
         private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
     }
 
@@ -76,19 +108,15 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        SettingsPreferences.migrateRangeDefaults(preferences)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        setupDetailSheet()
 
         viewModel.earthquakes.observe(viewLifecycleOwner) { earthquakes ->
             allEarthquakes = earthquakes.result
             applyMagnitudeFilter()
-        }
-
-        binding.backButton.setOnClickListener {
-            binding.earthquakeDetailsLayout.visibility = View.GONE
-            binding.recyclerView.visibility = View.VISIBLE
-            mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(TURKEY_LAT_LNG, 4f))
         }
 
         return binding.root
@@ -111,6 +139,135 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         super.onStop()
     }
 
+    private fun setupDetailSheet() {
+        detailSheetBehavior = BottomSheetBehavior.from(binding.earthquakeDetailsLayout)
+        detailSheetBehavior.isHideable = true
+        detailSheetBehavior.skipCollapsed = false
+        detailSheetBehavior.isFitToContents = true
+        detailSheetBehavior.peekHeight = dpToPx(DETAIL_SHEET_PEEK_HEIGHT_DP)
+        detailSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        detailSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                val earthquake = selectedEarthquake ?: return
+
+                when (newState) {
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        isExpandingDetailSheet = false
+                        lastDetailSheetSlideOffset = 1f
+                        setDetailHeaderMagnitudeVisible(visible = false, animate = true)
+                        focusEarthquakeOnMap(earthquake)
+                    }
+
+                    BottomSheetBehavior.STATE_COLLAPSED,
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+                        isExpandingDetailSheet = false
+                        lastDetailSheetSlideOffset = 0f
+                        showCompactDetails()
+                    }
+
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                        snapDetailSheetAfterRelease()
+                    }
+
+                    BottomSheetBehavior.STATE_DRAGGING,
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                        bottomSheet.removeCallbacks(::snapDetailSheetAfterRelease)
+                        bottomSheet.postDelayed(
+                            ::snapDetailSheetAfterRelease,
+                            DETAIL_SETTLE_SNAP_DELAY_MS
+                        )
+                    }
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                val isSlidingDown = slideOffset < lastDetailSheetSlideOffset
+                val isDraggingTowardCompactHeader =
+                    isSlidingDown && slideOffset in 0f..DETAIL_HEADER_MAG_SLIDE_THRESHOLD
+
+                setDetailHeaderMagnitudeVisible(
+                    visible = isDraggingTowardCompactHeader,
+                    animate = true
+                )
+                updateCompactDetailsPreview(slideOffset)
+                lastDetailSheetSlideOffset = slideOffset
+            }
+        })
+
+        binding.backButton.setOnClickListener {
+            closeEarthquakeDetails()
+        }
+
+        binding.compactBackButton.setOnClickListener {
+            closeEarthquakeDetails()
+        }
+
+        binding.compactDetailsBar.setOnClickListener {
+            expandCompactDetails()
+        }
+        binding.compactDetailsBar.alpha = 0f
+
+        setupCompactDetailsDrag()
+
+        binding.shareButton.setOnClickListener {
+            selectedEarthquake?.let { shareEarthquake(it) }
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupCompactDetailsDrag() {
+        val compactDragTargets = listOf(
+            binding.compactDetailsBar,
+            binding.compactDragHandle,
+            binding.compactMagTV,
+            binding.compactCountryTV,
+            binding.compactSubtitleTV
+        )
+
+        compactDragTargets.forEach { view ->
+            view.setOnTouchListener { _, event ->
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_DOWN -> {
+                        compactDragStartY = event.rawY
+                        compactDragHasExpanded = false
+                        view.parent.requestDisallowInterceptTouchEvent(true)
+                        true
+                    }
+
+                    MotionEvent.ACTION_MOVE -> {
+                        val dragDistance = compactDragStartY - event.rawY
+                        if (!compactDragHasExpanded &&
+                            dragDistance > dpToPx(COMPACT_EXPAND_DRAG_THRESHOLD_DP)
+                        ) {
+                            compactDragHasExpanded = true
+                            expandCompactDetails()
+                        }
+                        true
+                    }
+
+                    MotionEvent.ACTION_UP -> {
+                        if (!compactDragHasExpanded) {
+                            expandCompactDetails()
+                        }
+                        compactDragStartY = 0f
+                        compactDragHasExpanded = false
+                        view.parent.requestDisallowInterceptTouchEvent(false)
+                        true
+                    }
+
+                    MotionEvent.ACTION_CANCEL -> {
+                        compactDragStartY = 0f
+                        compactDragHasExpanded = false
+                        view.parent.requestDisallowInterceptTouchEvent(false)
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }
+    }
+
     @SuppressLint("MissingPermission")
     private fun enableMyLocationFeatures() {
         if (hasLocationPermission()) {
@@ -122,12 +279,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             val lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             if (lastLocation != null) {
                 userLocation = LatLng(lastLocation.latitude, lastLocation.longitude)
+                applyMagnitudeFilter()
                 Log.d("kullanici", userLocation!!.longitude.toString())
             }
 
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
                     userLocation = LatLng(location.latitude, location.longitude)
+                    applyMagnitudeFilter()
                     selectedEarthquake?.let { updateDistance(it) }
                 }
             }
@@ -161,7 +320,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     private fun getSelectedMapType(): Int {
-        return when (preferences.getString(MAPS_TYPE_KEY, DEFAULT_MAPS_TYPE)?.lowercase(Locale.US)) {
+        return when (
+            preferences.getString(
+                SettingsPreferences.MAP_TYPE_KEY,
+                SettingsPreferences.DEFAULT_MAP_TYPE
+            )?.lowercase(Locale.US)
+        ) {
             "terrain", "2" -> GoogleMap.MAP_TYPE_TERRAIN
             "satellite", "3" -> GoogleMap.MAP_TYPE_SATELLITE
             "hybrid", "4" -> GoogleMap.MAP_TYPE_HYBRID
@@ -171,20 +335,43 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     private fun applyMagnitudeFilter() {
         val minMagnitude = getSelectedMinimumMagnitude()
-        filteredEarthquakes = allEarthquakes.filter { earthquake ->
-            (earthquake.mag ?: 0.0) >= minMagnitude
+        val maximumDistanceKm = SettingsPreferences.normalizeDistanceRange(
+            preferences.getInt(
+                SettingsPreferences.DISTANCE_RANGE_KEY,
+                SettingsPreferences.DEFAULT_DISTANCE_RANGE_KM
+            )
+        )
+        val maximumDepthKm = SettingsPreferences.normalizeDepthRange(
+            preferences.getInt(
+                SettingsPreferences.DEPTH_RANGE_KEY,
+                SettingsPreferences.DEFAULT_DEPTH_RANGE_KM
+            )
+        )
+        val currentLocation = userLocation?.let {
+            EarthquakeFilter.Coordinates(latitude = it.latitude, longitude = it.longitude)
         }
+        filteredEarthquakes = EarthquakeFilter.apply(
+            earthquakes = allEarthquakes,
+            minimumMagnitude = minMagnitude,
+            maximumDistanceKm = maximumDistanceKm,
+            maximumDepthKm = maximumDepthKm,
+            userCoordinates = currentLocation
+        )
 
         if (_binding != null) {
-            binding.recyclerView.adapter = EarthquakeAdapter(
+            earthquakeAdapter = EarthquakeAdapter(
                 requireContext(),
                 filteredEarthquakes,
                 object : EarthquakeAdapter.OnItemClickListener {
                     override fun onItemClick(item: Result) {
                         handleItemClickDetails(item)
                     }
-                }
+                },
+                userLocation,
+                selectedDistanceUnit()
             )
+            binding.recyclerView.adapter = earthquakeAdapter
+            updateEmptyState()
         }
 
         renderFilteredEarthquakes()
@@ -202,12 +389,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private fun renderFilteredEarthquakes() {
         val googleMap = mMap ?: return
         googleMap.clear()
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TURKEY_LAT_LNG, 4f))
+        val markerLocations = mutableListOf<LatLng>()
 
         filteredEarthquakes.forEach { earthquake ->
             val latitude = earthquake.geojson?.coordinates?.getOrNull(1) ?: return@forEach
             val longitude = earthquake.geojson?.coordinates?.getOrNull(0) ?: return@forEach
             val location = LatLng(latitude, longitude)
+            markerLocations.add(location)
 
             val marker = googleMap.addMarker(
                 MarkerOptions()
@@ -216,63 +404,355 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             )
             marker?.tag = earthquake
         }
+
+        if (binding.recyclerView.visibility == View.VISIBLE ||
+            binding.emptyStateContainer.visibility == View.VISIBLE
+        ) {
+            focusEarthquakeListOnMap(markerLocations)
+        }
+    }
+
+    private fun updateEmptyState() {
+        val shouldShowEmptyState = selectedEarthquake == null && filteredEarthquakes.isEmpty()
+
+        binding.recyclerView.visibility = if (shouldShowEmptyState) View.GONE else View.VISIBLE
+        binding.emptyStateContainer.visibility = if (shouldShowEmptyState) View.VISIBLE else View.GONE
+
+        if (!shouldShowEmptyState) return
+
+        if (allEarthquakes.isEmpty()) {
+            binding.emptyStateTitle.setText(R.string.home_empty_data_title)
+            binding.emptyStateMessage.setText(R.string.home_empty_data_message)
+        } else {
+            binding.emptyStateTitle.setText(R.string.home_empty_filtered_title)
+            binding.emptyStateMessage.setText(R.string.home_empty_filtered_message)
+        }
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
         val earthquakeInfo = marker.tag as? Result
-        earthquakeInfo?.let { showMarkerInfoWindow(it) }
-
-        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 10f))
+        earthquakeInfo?.let { showEarthquakeDetails(it) }
         return true
     }
 
-    private fun showMarkerInfoWindow(earthquakeInfo: Result) {
-        selectedEarthquake = earthquakeInfo
-        binding.magTV.text = earthquakeInfo.mag.toString()
-        binding.depthTV.text = earthquakeInfo.depth.toString()
-        binding.countryTV.text = earthquakeInfo.title.toString()
-        binding.dateTV.text = formatToDisplayDate(earthquakeInfo.date)
-        val minutesPassed = calculateMinutesPassed(earthquakeInfo.date)
-        binding.minutesPassedTV.text = if (minutesPassed == "-") "-" else "$minutesPassed ago"
-        updateDistance(earthquakeInfo)
-
-        binding.recyclerView.visibility = View.GONE
-        binding.earthquakeDetailsLayout.visibility = View.VISIBLE
+    private fun handleItemClickDetails(item: Result) {
+        showEarthquakeDetails(item)
     }
 
-    private fun handleItemClickDetails(item: Result) {
+    private fun showEarthquakeDetails(item: Result) {
         selectedEarthquake = item
-        binding.recyclerView.visibility = View.GONE
-        binding.earthquakeDetailsLayout.visibility = View.VISIBLE
 
-        binding.magTV.text = item.mag.toString()
-        binding.depthTV.text = item.depth.toString()
-        binding.countryTV.text = item.title.toString()
-        binding.dateTV.text = formatToDisplayDate(item.date)
-        val minutesPassed = calculateMinutesPassed(item.date)
-        binding.minutesPassedTV.text = if (minutesPassed == "-") "-" else "$minutesPassed ago"
+        val magnitude = formatMagnitude(item.mag)
+        val title = item.title ?: "-"
+        val subtitle = getLocationSubtitle(item)
+        val elapsed = formatElapsedChip(item.date)
+
+        binding.magTV.text = magnitude
+        binding.heroMagnitudeTV.text = magnitude
+        MagnitudeStyle.applyBackground(binding.magTV, item.mag)
+        MagnitudeStyle.applyBackground(binding.magnitudeCircleContainer, item.mag)
+        MagnitudeStyle.applyBackground(binding.compactMagTV, item.mag)
+        binding.depthTV.text = formatDepth(item.depth)
+        binding.countryTV.text = title
+        binding.dateTV.text = formatToDisplayDateOnly(item.date)
+        binding.timeTV.text = formatToDisplayTime(item.date)
+        binding.detailTimestampTV.text = formatToDisplayDate(item.date)
+        binding.minutesPassedTV.text = elapsed
+        binding.shakingStatusTV.text = MagnitudeStyle.getStatus(item.mag)
+        binding.detailLocationSubtitleTV.text = subtitle
+        binding.summaryLocationTV.text = getNearbyLocationText(item)
+        binding.compactMagTV.text = magnitude
+        binding.compactCountryTV.text = title
+        binding.compactSubtitleTV.text = elapsed
         updateDistance(item)
+        lastDetailSheetSlideOffset = -1f
+        setDetailHeaderMagnitudeVisible(visible = false, animate = false)
 
-        val latitude = item.geojson?.coordinates?.getOrNull(1) ?: 0.0
-        val longitude = item.geojson?.coordinates?.getOrNull(0) ?: 0.0
-        val location = LatLng(latitude, longitude)
-        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
+        binding.recyclerView.visibility = View.GONE
+        binding.emptyStateContainer.visibility = View.GONE
+        binding.compactDetailsBar.visibility = View.GONE
+        binding.compactDetailsBar.alpha = 0f
+        binding.earthquakeDetailsLayout.visibility = View.VISIBLE
+        binding.earthquakeDetailsLayout.post {
+            isExpandingDetailSheet = true
+            detailSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            focusEarthquakeOnMap(item)
+        }
+    }
+
+    private fun closeEarthquakeDetails() {
+        selectedEarthquake = null
+        detailSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        binding.earthquakeDetailsLayout.visibility = View.INVISIBLE
+        binding.compactDetailsBar.visibility = View.GONE
+        binding.compactDetailsBar.alpha = 0f
+        updateEmptyState()
+        focusEarthquakeListOnMap(getFilteredEarthquakeLocations())
+    }
+
+    private fun showCompactDetails() {
+        if (selectedEarthquake == null) return
+
+        binding.earthquakeDetailsLayout.visibility = View.INVISIBLE
+        binding.compactDetailsBar.visibility = View.VISIBLE
+        binding.compactDetailsBar.alpha = 1f
+        selectedEarthquake?.let { focusEarthquakeOnMap(it) }
+    }
+
+    private fun expandCompactDetails() {
+        val earthquake = selectedEarthquake ?: return
+
+        isExpandingDetailSheet = true
+        binding.compactDetailsBar.alpha = 0f
+        binding.compactDetailsBar.visibility = View.GONE
+        binding.earthquakeDetailsLayout.visibility = View.VISIBLE
+        lastDetailSheetSlideOffset = 0f
+        setDetailHeaderMagnitudeVisible(visible = false, animate = false)
+        binding.earthquakeDetailsLayout.post {
+            detailSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            focusEarthquakeOnMap(earthquake)
+        }
+        binding.earthquakeDetailsLayout.postDelayed({
+            if (selectedEarthquake != null &&
+                binding.earthquakeDetailsLayout.visibility == View.VISIBLE &&
+                isExpandingDetailSheet
+            ) {
+                detailSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+        }, COMPACT_EXPAND_CONFIRM_DELAY_MS)
+    }
+
+    private fun updateCompactDetailsPreview(slideOffset: Float) {
+        if (selectedEarthquake == null || binding.earthquakeDetailsLayout.visibility != View.VISIBLE) {
+            return
+        }
+
+        val previewAlpha = ((DETAIL_HEADER_MAG_SLIDE_THRESHOLD - slideOffset) /
+            DETAIL_HEADER_MAG_SLIDE_THRESHOLD).coerceIn(0f, 1f)
+
+        if (previewAlpha > 0f) {
+            if (binding.compactDetailsBar.visibility != View.VISIBLE) {
+                binding.compactDetailsBar.visibility = View.VISIBLE
+            }
+            binding.compactDetailsBar.alpha = previewAlpha
+        } else if (binding.compactDetailsBar.visibility == View.VISIBLE) {
+            binding.compactDetailsBar.alpha = 0f
+            binding.compactDetailsBar.visibility = View.GONE
+        }
+    }
+
+    private fun snapDetailSheetAfterRelease() {
+        if (selectedEarthquake == null || binding.earthquakeDetailsLayout.visibility != View.VISIBLE) {
+            return
+        }
+
+        val currentState = detailSheetBehavior.state
+        if (currentState == BottomSheetBehavior.STATE_EXPANDED ||
+            currentState == BottomSheetBehavior.STATE_COLLAPSED ||
+            currentState == BottomSheetBehavior.STATE_HIDDEN
+        ) {
+            return
+        }
+
+        val shouldExpand = isExpandingDetailSheet ||
+            lastDetailSheetSlideOffset >= DETAIL_EXPAND_SNAP_THRESHOLD
+
+        detailSheetBehavior.state = if (shouldExpand) {
+            BottomSheetBehavior.STATE_EXPANDED
+        } else {
+            BottomSheetBehavior.STATE_COLLAPSED
+        }
+    }
+
+    private fun setDetailHeaderMagnitudeVisible(visible: Boolean, animate: Boolean) {
+        if (isDetailHeaderMagnitudeVisible == visible) return
+
+        isDetailHeaderMagnitudeVisible = visible
+
+        if (animate && binding.earthquakeDetailsLayout.isLaidOut) {
+            val transition = TransitionSet()
+                .setOrdering(TransitionSet.ORDERING_TOGETHER)
+                .addTransition(
+                    ChangeBounds()
+                        .addTarget(binding.magTV)
+                        .addTarget(binding.countryTV)
+                        .addTarget(binding.minutesPassedTV)
+                )
+                .addTransition(Fade(Fade.IN or Fade.OUT).addTarget(binding.magTV))
+                .setDuration(DETAIL_HEADER_MAG_ANIMATION_DURATION_MS)
+
+            transition.interpolator = DecelerateInterpolator()
+            TransitionManager.beginDelayedTransition(binding.earthquakeDetailsLayout, transition)
+        }
+
+        ConstraintSet().apply {
+            clone(binding.earthquakeDetailsLayout)
+            setVisibility(binding.magTV.id, if (visible) View.VISIBLE else View.GONE)
+
+            if (visible) {
+                connect(
+                    binding.countryTV.id,
+                    ConstraintSet.START,
+                    binding.magTV.id,
+                    ConstraintSet.END,
+                    dpToPx(10)
+                )
+                connect(
+                    binding.minutesPassedTV.id,
+                    ConstraintSet.START,
+                    binding.magTV.id,
+                    ConstraintSet.END,
+                    dpToPx(10)
+                )
+            } else {
+                connect(
+                    binding.countryTV.id,
+                    ConstraintSet.START,
+                    binding.backButton.id,
+                    ConstraintSet.END,
+                    dpToPx(12)
+                )
+                connect(
+                    binding.minutesPassedTV.id,
+                    ConstraintSet.START,
+                    binding.backButton.id,
+                    ConstraintSet.END,
+                    dpToPx(12)
+                )
+            }
+
+            applyTo(binding.earthquakeDetailsLayout)
+        }
+    }
+
+    private fun focusEarthquakeListOnMap(locations: List<LatLng>) {
+        binding.recyclerView.post {
+            updateMapPaddingForEarthquakeList()
+
+            when (locations.size) {
+                0 -> mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(TURKEY_LAT_LNG, 4f))
+                1 -> mMap?.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(locations.first(), LIST_SINGLE_EARTHQUAKE_ZOOM)
+                )
+                else -> {
+                    val boundsBuilder = LatLngBounds.Builder()
+                    locations.forEach { boundsBuilder.include(it) }
+                    mMap?.animateCamera(
+                        CameraUpdateFactory.newLatLngBounds(
+                            boundsBuilder.build(),
+                            dpToPx(LIST_MAP_EDGE_PADDING_DP)
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    private fun focusEarthquakeOnMap(item: Result) {
+        val coordinates = getEarthquakeCoordinates(item) ?: return
+
+        binding.earthquakeDetailsLayout.post {
+            updateMapPaddingForDetailSheet()
+            mMap?.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(coordinates, SELECTED_EARTHQUAKE_ZOOM)
+            )
+        }
+    }
+
+    private fun updateMapPaddingForDetailSheet() {
+        val rootHeight = binding.root.height
+        val minVisibleMapHeight = dpToPx(MIN_VISIBLE_MAP_HEIGHT_DP)
+        val maxBottomPadding = (rootHeight - minVisibleMapHeight).coerceAtLeast(0)
+        val visibleSheetHeight = when {
+            binding.compactDetailsBar.visibility == View.VISIBLE -> dpToPx(DETAIL_SHEET_PEEK_HEIGHT_DP)
+            binding.earthquakeDetailsLayout.visibility == View.VISIBLE -> binding.earthquakeDetailsLayout.height
+            else -> 0
+        }
+        val bottomPadding = if (visibleSheetHeight == 0) {
+            0
+        } else {
+            (visibleSheetHeight + dpToPx(MAP_FOCUS_EXTRA_PADDING_DP)).coerceAtMost(maxBottomPadding)
+        }
+
+        mMap?.setPadding(0, 0, 0, bottomPadding)
+    }
+
+    private fun updateMapPaddingForEarthquakeList() {
+        val rootHeight = binding.root.height
+        val listTop = binding.recyclerView.top
+        val bottomPadding = if (rootHeight > 0 && listTop > 0) {
+            rootHeight - listTop + dpToPx(MAP_FOCUS_EXTRA_PADDING_DP)
+        } else {
+            0
+        }
+
+        mMap?.setPadding(0, 0, 0, bottomPadding.coerceAtLeast(0))
+    }
+
+    private fun getFilteredEarthquakeLocations(): List<LatLng> {
+        return filteredEarthquakes.mapNotNull { getEarthquakeCoordinates(it) }
+    }
+
+    private fun dpToPx(value: Int): Int {
+        return (value * resources.displayMetrics.density).toInt()
     }
 
     private fun updateDistance(item: Result) {
-        val latitude = item.geojson?.coordinates?.getOrNull(1)
-        val longitude = item.geojson?.coordinates?.getOrNull(0)
+        val earthquakeLocation = getEarthquakeCoordinates(item)
         val currentUserLocation = userLocation
 
-        binding.distanceTV.text = if (latitude != null && longitude != null && currentUserLocation != null) {
-            val distance = calculateDistance(LatLng(latitude, longitude), currentUserLocation)
-            "$distance km"
+        binding.distanceTV.text = if (earthquakeLocation != null && currentUserLocation != null) {
+            val distance = calculateDistance(earthquakeLocation, currentUserLocation)
+            DistanceFormatter.format(distance, selectedDistanceUnit())
         } else {
             "-"
         }
     }
 
-    private fun calculateDistance(earthquakeLocation: LatLng, userLocation: LatLng?): Long {
+    private fun getEarthquakeCoordinates(item: Result): LatLng? {
+        val latitude = item.geojson?.coordinates?.getOrNull(1)
+        val longitude = item.geojson?.coordinates?.getOrNull(0)
+
+        return if (latitude != null && longitude != null) {
+            LatLng(latitude, longitude)
+        } else {
+            null
+        }
+    }
+
+    private fun shareEarthquake(item: Result) {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_SUBJECT, "Earthquake details")
+            putExtra(Intent.EXTRA_TEXT, buildShareText(item))
+        }
+
+        startActivity(Intent.createChooser(shareIntent, "Share earthquake details"))
+    }
+
+    private fun buildShareText(item: Result): String {
+        val coordinates = getEarthquakeCoordinates(item)
+        val lines = mutableListOf(
+            "Earthquake details",
+            "Location: ${item.title ?: "-"}",
+            "Magnitude: ${formatMagnitude(item.mag)}",
+            "Depth: ${formatDepth(item.depth)}",
+            "Date: ${formatToDisplayDate(item.date)}"
+        )
+
+        val distance = binding.distanceTV.text?.toString().orEmpty()
+        if (distance.isNotBlank() && distance != "-") {
+            lines.add("Distance: $distance")
+        }
+
+        if (coordinates != null) {
+            lines.add("Map: https://www.google.com/maps/search/?api=1&query=${coordinates.latitude},${coordinates.longitude}")
+        }
+
+        return lines.joinToString(separator = "\n")
+    }
+
+    private fun calculateDistance(earthquakeLocation: LatLng, userLocation: LatLng?): Double {
         val result = FloatArray(1)
         if (userLocation != null) {
             Location.distanceBetween(
@@ -284,16 +764,79 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             )
         }
 
-        return (result[0] / 1000).toLong()
+        return result[0] / 1000.0
+    }
+
+    private fun selectedDistanceUnit(): String {
+        return preferences.getString(
+            SettingsPreferences.DISTANCE_UNIT_KEY,
+            SettingsPreferences.DEFAULT_DISTANCE_UNIT
+        ) ?: SettingsPreferences.DEFAULT_DISTANCE_UNIT
+    }
+
+    private fun formatMagnitude(magnitude: Double?): String {
+        return magnitude?.let { String.format(Locale.US, "%.1f", it) } ?: "-"
+    }
+
+    private fun formatDepth(depth: Double?): String {
+        val formattedDepth = depth?.let {
+            if (it % 1.0 == 0.0) {
+                it.toInt().toString()
+            } else {
+                String.format(Locale.US, "%.1f", it)
+            }
+        } ?: "-"
+
+        return if (formattedDepth == "-") formattedDepth else "$formattedDepth km"
+    }
+
+    private fun getLocationSubtitle(item: Result): String {
+        val coordinates = getEarthquakeCoordinates(item) ?: return "Selected earthquake"
+
+        return String.format(Locale.US, "%.3f, %.3f", coordinates.latitude, coordinates.longitude)
+    }
+
+    private fun getNearbyLocationText(item: Result): String {
+        val closestCity = item.locationProperties?.closestCity?.name
+        if (!closestCity.isNullOrBlank()) {
+            return "Near $closestCity"
+        }
+
+        val epiCenter = item.locationProperties?.epiCenter?.name
+        if (!epiCenter.isNullOrBlank()) {
+            return "Near $epiCenter"
+        }
+
+        return getLocationSubtitle(item)
+    }
+
+    private fun formatElapsedChip(dateTime: String?): String {
+        return when (val minutesPassed = calculateMinutesPassed(dateTime)) {
+            "-" -> "-"
+            "now" -> "now"
+            else -> "$minutesPassed ago"
+        }
     }
 
     private fun formatToDisplayDate(dateTime: String?): String {
+        return formatDate(dateTime, "dd.MM.yyyy HH:mm", Locale.getDefault())
+    }
+
+    private fun formatToDisplayDateOnly(dateTime: String?): String {
+        return formatDate(dateTime, "dd MMM", Locale.ENGLISH)
+    }
+
+    private fun formatToDisplayTime(dateTime: String?): String {
+        return formatDate(dateTime, "HH:mm", Locale.getDefault())
+    }
+
+    private fun formatDate(dateTime: String?, pattern: String, locale: Locale): String {
         if (dateTime.isNullOrBlank() || dateTime.equals("null", ignoreCase = true)) {
             return "-"
         }
 
         return try {
-            val outputFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+            val outputFormat = SimpleDateFormat(pattern, locale)
             val date = parseApiDate(dateTime) ?: return "-"
             outputFormat.format(date)
         } catch (_: Exception) {
@@ -338,6 +881,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     private fun formatTimeDifference(minutes: Long): String {
+        if (minutes == 0L) {
+            return "now"
+        }
+
         val hours = minutes / 60
         val remainingMinutes = minutes % 60
         val formattedString = StringBuilder()
@@ -353,10 +900,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == MagnitudePreference.KEY) {
+        if (
+            key == MagnitudePreference.KEY ||
+            key == SettingsPreferences.DISTANCE_RANGE_KEY ||
+            key == SettingsPreferences.DEPTH_RANGE_KEY ||
+            key == SettingsPreferences.DISTANCE_UNIT_KEY
+        ) {
             applyMagnitudeFilter()
+            selectedEarthquake?.let { updateDistance(it) }
         }
-        if (key == MAPS_TYPE_KEY) {
+        if (key == SettingsPreferences.MAP_TYPE_KEY) {
             applyMapType()
         }
     }
@@ -364,6 +917,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onDestroyView() {
         mMap?.setOnMarkerClickListener(null)
         mMap = null
+        binding.recyclerView.adapter = null
+        earthquakeAdapter = null
         _binding = null
         super.onDestroyView()
     }

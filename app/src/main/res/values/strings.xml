@@ -2,7 +2,91 @@
     <string name="app_name">EarthquakeApp</string>
     <string name="Earthquakes">Earthquakes</string>
     <string name="Emergency">Emergency</string>
+    <string name="home_empty_filtered_title">No earthquakes found</string>
+    <string name="home_empty_filtered_message">There are no earthquakes matching your current filters. Try widening the distance, depth, or magnitude range.</string>
+    <string name="home_empty_data_title">No earthquake data available</string>
+    <string name="home_empty_data_message">Earthquake data could not be displayed right now. Please check again in a moment.</string>
 
+    <!-- Emergency Tools Strings -->
+    <string name="emergency_tools_title">Emergency Tools</string>
+    <string name="emergency_tools_subtitle">Quick access when every second matters</string>
+    <string name="emergency_tools_section">TOOLS</string>
+    <string name="emergency_tool_call_title">Emergency Call</string>
+    <string name="emergency_tool_call_description">Official numbers and trusted contacts</string>
+    <string name="emergency_tool_whistle_title">Emergency Whistle</string>
+    <string name="emergency_tool_whistle_description">Make a loud sound to help rescuers find you</string>
+    <string name="emergency_tool_information_title">During an Earthquake</string>
+    <string name="emergency_tool_information_description">Simple actions that can save lives</string>
+    <string name="emergency_tool_bag_title">Emergency Bag</string>
+    <string name="emergency_tool_bag_description">Prepare the essentials before disaster strikes</string>
+
+    <!-- Whistle Strings -->
+    <string name="whistle_title">Emergency Whistle</string>
+    <string name="whistle_subtitle">Use when you need to be found</string>
+    <string name="whistle_ready">Ready</string>
+    <string name="whistle_ready_description">Tap the button to start</string>
+    <string name="whistle_active">Whistle is active</string>
+    <string name="whistle_active_description">Tap again to stop</string>
+    <string name="whistle_start">START WHISTLE</string>
+    <string name="whistle_stop">STOP WHISTLE</string>
+    <string name="whistle_helper">Plays a loud, continuous whistle sound</string>
+    <string name="whistle_volume_title">Keep your volume up</string>
+    <string name="whistle_volume_description">Make sure your media volume is high enough to be heard.</string>
+    <string name="whistle_back">Back to emergency tools</string>
+
+    <!-- Earthquake Safety Strings -->
+    <string name="information_title">During an Earthquake</string>
+    <string name="information_subtitle">Simple actions that can save lives</string>
+    <string name="information_summary_title">Stay calm and act quickly</string>
+    <string name="information_summary_description">Follow these steps while the shaking continues.</string>
+    <string name="information_back">Back to emergency tools</string>
+
+    <!-- Emergency Numbers Strings -->
+    <string name="emergency_numbers_title">Emergency Call</string>
+    <string name="emergency_numbers_subtitle">Official numbers for your current country</string>
+    <string name="emergency_numbers_back">Back to emergency tools</string>
+    <string name="emergency_numbers_country_label">Current country</string>
+    <string name="emergency_numbers_change">Change</string>
+    <string name="emergency_numbers_automatic">Automatic</string>
+    <string name="emergency_numbers_manual">Selected manually</string>
+    <string name="emergency_numbers_country_unknown">Select a country</string>
+    <string name="emergency_numbers_automatic_option">Automatic (%1$s)</string>
+    <string name="emergency_numbers_official_services">Official emergency services</string>
+    <string name="emergency_numbers_unavailable">A verified emergency number is not available for this region. Choose another country or use your device’s emergency dialer.</string>
+    <string name="emergency_numbers_call">Call</string>
+    <string name="emergency_numbers_tell_operator_title">What to tell the operator</string>
+    <string name="emergency_numbers_tell_operator_body">• What happened\n• Your exact location\n• How many people are affected\n• Your name and phone number</string>
+    <string name="emergency_numbers_source">Source: %1$s · Verified %2$s</string>
+    <string name="emergency_numbers_source_itu">ITU E.129</string>
+    <string name="emergency_numbers_source_other">Emergency metadata</string>
+    <string name="emergency_numbers_category_general">All emergency services</string>
+    <string name="emergency_numbers_category_police">Police</string>
+    <string name="emergency_numbers_category_fire">Fire</string>
+    <string name="emergency_numbers_category_ambulance">Ambulance</string>
+    <string name="emergency_numbers_no_dialer">No phone app is available on this device.</string>
+    <string name="emergency_contacts_title">Personal emergency contacts</string>
+    <string name="emergency_contacts_count">%1$d of %2$d saved</string>
+    <string name="emergency_contacts_add">Add contact</string>
+    <string name="emergency_contacts_add_short">Add</string>
+    <string name="emergency_contacts_empty">Add up to three trusted people for quick access during an emergency.</string>
+    <string name="emergency_contacts_add_title">Add emergency contact</string>
+    <string name="emergency_contacts_add_from_phone">Choose from contacts</string>
+    <string name="emergency_contacts_add_manually">Enter manually</string>
+    <string name="emergency_contacts_name">Name</string>
+    <string name="emergency_contacts_phone">Phone number</string>
+    <string name="emergency_contacts_save">Save</string>
+    <string name="emergency_contacts_cancel">Cancel</string>
+    <string name="emergency_contacts_edit_title">Edit emergency contact</string>
+    <string name="emergency_contacts_call">Call contact</string>
+    <string name="emergency_contacts_edit">Edit contact</string>
+    <string name="emergency_contacts_delete">Delete contact</string>
+    <string name="emergency_contacts_delete_title">Delete contact?</string>
+    <string name="emergency_contacts_delete_message">Remove %1$s from your emergency contacts?</string>
+    <string name="emergency_contacts_invalid">Enter both a name and a valid phone number.</string>
+    <string name="emergency_contacts_duplicate">This phone number is already saved.</string>
+    <string name="emergency_contacts_limit">You can save up to three emergency contacts.</string>
+    <string name="emergency_contacts_read_failed">This contact does not contain a readable phone number.</string>
+    <string name="emergency_contacts_picker_unavailable">No contacts app is available on this device.</string>
 
     <!-- Settings Strings -->
     <string name="Settings">Settings</string>
@@ -12,12 +96,45 @@
     <string name="SettingsCategorySupport">Support</string>
     <string name="SettingsEarthquakeNotificationsTitle">Enable earthquake notifications</string>
     <string name="SettingsEarthquakeNotificationsSummary">Receive alerts when new earthquake data is available.</string>
-    <string name="SettingsMessageNotificationsTitle">Enable message notifications</string>
-    <string name="SettingsMessageNotificationsSummary">Receive app messages and important updates.</string>
     <string name="SettingsMapTypeTitle">Select map type</string>
     <string name="SettingsMinimumMagnitudeTitle">Minimum magnitude</string>
     <string name="SettingsFeedbackTitle">Send feedback</string>
     <string name="SettingsFeedbackSummary">Report technical issues or suggest new features.</string>
+    <string name="settings_subtitle">Customize alerts and preferences</string>
+    <string name="settings_section_filter">EARTHQUAKE FILTER</string>
+    <string name="settings_section_notifications">NOTIFICATIONS</string>
+    <string name="settings_section_maps">MAPS</string>
+    <string name="settings_section_support">SUPPORT</string>
+    <string name="settings_minimum_magnitude_summary">Only show earthquakes at or above this level</string>
+    <string name="settings_magnitude_min">1.0</string>
+    <string name="settings_magnitude_max">10.0</string>
+    <string name="settings_earthquake_alerts_title">Earthquake alerts</string>
+    <string name="settings_earthquake_alerts_summary">Notify me when new earthquake data is available</string>
+    <string name="settings_distance_range_title">Distance Range</string>
+    <string name="settings_distance_range_summary">Show earthquakes within %1$s</string>
+    <string name="settings_distance_range_location_required">Location is required; distance filter is currently inactive</string>
+    <string name="settings_depth_range_title">Depth Range</string>
+    <string name="settings_depth_range_summary">Show earthquakes up to %1$s deep</string>
+    <string name="settings_depth_kilometers">%1$d km</string>
+    <string name="settings_all">All</string>
+    <string name="settings_all_earthquakes">All earthquakes</string>
+    <string name="settings_quiet_hours_title">Quiet Hours</string>
+    <string name="settings_quiet_hours_on">On</string>
+    <string name="settings_quiet_hours_off">Off</string>
+    <string name="settings_quiet_hours_dialog_title">Quiet Hours</string>
+    <string name="settings_quiet_hours_change">Change schedule</string>
+    <string name="settings_quiet_hours_start_title">Quiet hours start</string>
+    <string name="settings_quiet_hours_end_title">Quiet hours end</string>
+    <string name="settings_map_type_title">Map type</string>
+    <string name="settings_distance_units_title">Distance Units</string>
+    <string name="settings_distance_units_kilometers">Kilometers (km)</string>
+    <string name="settings_distance_units_miles">Miles (mi)</string>
+    <string name="settings_feedback_summary">Report an issue or suggest a feature</string>
+    <string name="settings_map_type_dialog_title">Select map type</string>
+    <string name="settings_distance_units_dialog_title">Distance units</string>
+    <string name="settings_feedback_subject">EarthquakeApp feedback</string>
+    <string name="settings_feedback_chooser">Send feedback</string>
+    <string name="settings_feedback_unavailable">No email app is available.</string>
     <!-- Maps Type Values -->
     <string-array name="MapsTypeEntries">
         <item>Normal</item>

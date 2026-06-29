@@ -7,4 +7,24 @@
     <color name="lightgray">#7A7979</color>
     <color name="darkWhite">#D3D3D3</color>
     <color name="lightred">#BA4444</color>
+    <color name="earthquake_accent">#E62117</color>
+    <color name="earthquake_accent_dark">#A9140E</color>
+    <color name="earthquake_accent_soft">#FDE8E6</color>
+    <color name="earthquake_blue">#1976D2</color>
+    <color name="earthquake_blue_soft">#EAF3FF</color>
+    <color name="earthquake_orange">#F57C00</color>
+    <color name="earthquake_orange_soft">#FFF3E5</color>
+    <color name="earthquake_teal">#00897B</color>
+    <color name="earthquake_teal_soft">#E6F6F4</color>
+    <color name="earthquake_magnitude_low">#2E7D32</color>
+    <color name="earthquake_magnitude_noticeable">#F57C00</color>
+    <color name="earthquake_magnitude_moderate">#E62117</color>
+    <color name="earthquake_magnitude_strong">#A9140E</color>
+    <color name="earthquake_magnitude_severe">#6A1B9A</color>
+    <color name="earthquake_magnitude_unknown">#6D737A</color>
+    <color name="earthquake_text_primary">#202124</color>
+    <color name="earthquake_text_secondary">#6D737A</color>
+    <color name="earthquake_surface_soft">#FFFFFF</color>
+    <color name="earthquake_stroke">#E8EAED</color>
+    <color name="earthquake_handle">#D9DDE2</color>
 </resources>

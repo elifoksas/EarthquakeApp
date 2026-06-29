@@ -8,9 +8,11 @@ import com.elifoksas.earthquake.data.datasource.EmergencyDataSource
 import com.elifoksas.earthquake.data.datasource.InformationDataSource
 import com.elifoksas.earthquake.data.repository.EarthquakeRepository
 import com.elifoksas.earthquake.data.repository.EmergencyRepository
+import com.elifoksas.earthquake.data.repository.EmergencyNumbersRepository
 import com.elifoksas.earthquake.data.repository.InformationRepository
 import com.elifoksas.earthquake.retrofit.ApiUtils
 import com.elifoksas.earthquake.retrofit.EarthquakeDao
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -62,7 +64,20 @@ class AppModule {
         return InformationRepository(informationDataSource)
     }
 
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        return Gson()
+    }
 
+    @Provides
+    @Singleton
+    fun provideEmergencyNumbersRepository(
+        @ApplicationContext context: Context,
+        gson: Gson
+    ): EmergencyNumbersRepository {
+        return EmergencyNumbersRepository(context, gson)
+    }
 
 
     @Provides

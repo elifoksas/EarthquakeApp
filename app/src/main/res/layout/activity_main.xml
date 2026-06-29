@@ -12,23 +12,145 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/nav_graph" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom_navigation_container"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:itemIconTint="@color/bottom_nav_color_change"
-        app:itemTextColor="@color/bottom_nav_color_change"
+        android:layout_height="68dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:strokeColor="@color/earthquake_stroke"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                <LinearLayout
+                    android:id="@+id/nav_earthquakes"
+                    android:layout_width="88dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bottom_navigation_item_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="2dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/ic_nav_earthquakes"
+                        app:tint="@color/bottom_navigation_item_color" />
+
+                    <TextView
+                        android:id="@+id/nav_earthquakes_label"
+                        style="@style/BottomNavigationCustomLabel"
+                        android:layout_marginTop="2dp"
+                        android:duplicateParentState="true"
+                        android:text="@string/Earthquakes" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                <LinearLayout
+                    android:id="@+id/nav_emergency"
+                    android:layout_width="88dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bottom_navigation_item_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="2dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/ic_nav_emergency"
+                        app:tint="@color/bottom_navigation_item_color" />
+
+                    <TextView
+                        android:id="@+id/nav_emergency_label"
+                        style="@style/BottomNavigationCustomLabel"
+                        android:layout_marginTop="2dp"
+                        android:duplicateParentState="true"
+                        android:text="@string/Emergency" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                <LinearLayout
+                    android:id="@+id/nav_settings"
+                    android:layout_width="88dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bottom_navigation_item_selector"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="2dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/ic_nav_settings"
+                        app:tint="@color/bottom_navigation_item_color" />
+
+                    <TextView
+                        android:id="@+id/nav_settings_label"
+                        style="@style/BottomNavigationCustomLabel"
+                        android:layout_marginTop="2dp"
+                        android:duplicateParentState="true"
+                        android:text="@string/Settings" />
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

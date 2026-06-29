@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_emergencyFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_emergencyFragment_to_emergencyNumbersFragment"
+            app:destination="@id/emergencyNumbersFragment" />
     </fragment>
     <fragment
         android:id="@+id/whistleFragment"
@@ -50,4 +53,9 @@
         android:id="@+id/informationFragment"
         android:name="com.elifoksas.earthquake.ui.fragment.InformationFragment"
         android:label="InformationFragment" />
+    <fragment
+        android:id="@+id/emergencyNumbersFragment"
+        android:name="com.elifoksas.earthquake.ui.fragment.EmergencyNumbersFragment"
+        android:label="EmergencyNumbersFragment"
+        tools:layout="@layout/fragment_emergency_numbers" />
 </navigation>
