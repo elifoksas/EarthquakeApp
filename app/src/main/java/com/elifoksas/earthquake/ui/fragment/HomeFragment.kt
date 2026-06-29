@@ -30,9 +30,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elifoksas.earthquake.R
 import com.elifoksas.earthquake.data.entity.Result
 import com.elifoksas.earthquake.databinding.FragmentHomeBinding
+import com.elifoksas.earthquake.ui.DistanceFormatter
+import com.elifoksas.earthquake.ui.EarthquakeFilter
 import com.elifoksas.earthquake.ui.MagnitudeStyle
 import com.elifoksas.earthquake.ui.adapter.EarthquakeAdapter
 import com.elifoksas.earthquake.ui.preference.MagnitudePreference
+import com.elifoksas.earthquake.ui.preference.SettingsPreferences
 import com.elifoksas.earthquake.ui.viewmodel.HomeViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -81,8 +84,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     companion object {
-        private const val MAPS_TYPE_KEY = "MapsType"
-        private const val DEFAULT_MAPS_TYPE = "normal"
         private const val SELECTED_EARTHQUAKE_ZOOM = 10f
         private const val MIN_VISIBLE_MAP_HEIGHT_DP = 180
         private const val MAP_FOCUS_EXTRA_PADDING_DP = 24
@@ -102,6 +103,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        SettingsPreferences.migrateRangeDefaults(preferences)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
@@ -240,14 +242,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             val lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             if (lastLocation != null) {
                 userLocation = LatLng(lastLocation.latitude, lastLocation.longitude)
-                earthquakeAdapter?.updateUserLocation(userLocation)
+                applyMagnitudeFilter()
                 Log.d("kullanici", userLocation!!.longitude.toString())
             }
 
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
                     userLocation = LatLng(location.latitude, location.longitude)
-                    earthquakeAdapter?.updateUserLocation(userLocation)
+                    applyMagnitudeFilter()
                     selectedEarthquake?.let { updateDistance(it) }
                 }
             }
@@ -281,7 +283,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     private fun getSelectedMapType(): Int {
-        return when (preferences.getString(MAPS_TYPE_KEY, DEFAULT_MAPS_TYPE)?.lowercase(Locale.US)) {
+        return when (
+            preferences.getString(
+                SettingsPreferences.MAP_TYPE_KEY,
+                SettingsPreferences.DEFAULT_MAP_TYPE
+            )?.lowercase(Locale.US)
+        ) {
             "terrain", "2" -> GoogleMap.MAP_TYPE_TERRAIN
             "satellite", "3" -> GoogleMap.MAP_TYPE_SATELLITE
             "hybrid", "4" -> GoogleMap.MAP_TYPE_HYBRID
@@ -291,9 +298,24 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     private fun applyMagnitudeFilter() {
         val minMagnitude = getSelectedMinimumMagnitude()
-        filteredEarthquakes = allEarthquakes.filter { earthquake ->
-            (earthquake.mag ?: 0.0) >= minMagnitude
+        val maximumDistanceKm = preferences.getInt(
+            SettingsPreferences.DISTANCE_RANGE_KEY,
+            SettingsPreferences.DEFAULT_DISTANCE_RANGE_KM
+        )
+        val maximumDepthKm = preferences.getInt(
+            SettingsPreferences.DEPTH_RANGE_KEY,
+            SettingsPreferences.DEFAULT_DEPTH_RANGE_KM
+        )
+        val currentLocation = userLocation?.let {
+            EarthquakeFilter.Coordinates(latitude = it.latitude, longitude = it.longitude)
         }
+        filteredEarthquakes = EarthquakeFilter.applyKeepingListVisible(
+            earthquakes = allEarthquakes,
+            minimumMagnitude = minMagnitude,
+            maximumDistanceKm = maximumDistanceKm,
+            maximumDepthKm = maximumDepthKm,
+            userCoordinates = currentLocation
+        )
 
         if (_binding != null) {
             earthquakeAdapter = EarthquakeAdapter(
@@ -304,7 +326,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                         handleItemClickDetails(item)
                     }
                 },
-                userLocation
+                userLocation,
+                selectedDistanceUnit()
             )
             binding.recyclerView.adapter = earthquakeAdapter
         }
@@ -562,7 +585,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         binding.distanceTV.text = if (earthquakeLocation != null && currentUserLocation != null) {
             val distance = calculateDistance(earthquakeLocation, currentUserLocation)
-            "$distance km"
+            DistanceFormatter.format(distance, selectedDistanceUnit())
         } else {
             "-"
         }
@@ -611,7 +634,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         return lines.joinToString(separator = "\n")
     }
 
-    private fun calculateDistance(earthquakeLocation: LatLng, userLocation: LatLng?): Long {
+    private fun calculateDistance(earthquakeLocation: LatLng, userLocation: LatLng?): Double {
         val result = FloatArray(1)
         if (userLocation != null) {
             Location.distanceBetween(
@@ -623,7 +646,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             )
         }
 
-        return (result[0] / 1000).toLong()
+        return result[0] / 1000.0
+    }
+
+    private fun selectedDistanceUnit(): String {
+        return preferences.getString(
+            SettingsPreferences.DISTANCE_UNIT_KEY,
+            SettingsPreferences.DEFAULT_DISTANCE_UNIT
+        ) ?: SettingsPreferences.DEFAULT_DISTANCE_UNIT
     }
 
     private fun formatMagnitude(magnitude: Double?): String {
@@ -752,10 +782,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == MagnitudePreference.KEY) {
+        if (
+            key == MagnitudePreference.KEY ||
+            key == SettingsPreferences.DISTANCE_RANGE_KEY ||
+            key == SettingsPreferences.DEPTH_RANGE_KEY ||
+            key == SettingsPreferences.DISTANCE_UNIT_KEY
+        ) {
             applyMagnitudeFilter()
+            selectedEarthquake?.let { updateDistance(it) }
         }
-        if (key == MAPS_TYPE_KEY) {
+        if (key == SettingsPreferences.MAP_TYPE_KEY) {
             applyMapType()
         }
     }

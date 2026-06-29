@@ -24,12 +24,6 @@
             app:key="notifications"
             app:summary="@string/SettingsEarthquakeNotificationsSummary"
             app:title="@string/SettingsEarthquakeNotificationsTitle" />
-
-        <SwitchPreferenceCompat
-            app:iconSpaceReserved="false"
-            app:key="message_notifications"
-            app:summary="@string/SettingsMessageNotificationsSummary"
-            app:title="@string/SettingsMessageNotificationsTitle" />
     </PreferenceCategory>
 
     <PreferenceCategory

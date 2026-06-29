@@ -3,14 +3,19 @@ package com.elifoksas.earthquake.ui.fragment
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.ColorRes
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -181,7 +186,7 @@ class EmergencyNumbersFragment : Fragment() {
             return
         }
 
-        MaterialAlertDialogBuilder(requireContext())
+        val dialog = MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.emergency_contacts_add_title)
             .setItems(
                 arrayOf(
@@ -195,7 +200,16 @@ class EmergencyNumbersFragment : Fragment() {
                     showContactDialog(null)
                 }
             }
-            .show()
+            .setNegativeButton(R.string.emergency_contacts_cancel, null)
+            .create()
+
+        dialog.setOnShowListener {
+            styleDialogButton(
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE),
+                R.color.earthquake_accent
+            )
+        }
+        dialog.show()
     }
 
     private fun openContactPicker() {
@@ -263,7 +277,12 @@ class EmergencyNumbersFragment : Fragment() {
             .create()
 
         dialog.setOnShowListener {
-            dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            val saveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            val cancelButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            styleDialogButton(saveButton, R.color.earthquake_accent, bold = true)
+            styleDialogButton(cancelButton, R.color.earthquake_text_primary)
+
+            saveButton.setOnClickListener {
                 val result = viewModel.saveContact(
                     contact?.id,
                     dialogBinding.contactNameInput.text?.toString().orEmpty(),
@@ -277,6 +296,17 @@ class EmergencyNumbersFragment : Fragment() {
             }
         }
         dialog.show()
+    }
+
+    private fun styleDialogButton(
+        button: Button,
+        @ColorRes colorRes: Int,
+        bold: Boolean = false
+    ) {
+        button.setTextColor(ContextCompat.getColor(requireContext(), colorRes))
+        if (bold) {
+            button.setTypeface(button.typeface, Typeface.BOLD)
+        }
     }
 
     private fun confirmDelete(contact: PersonalEmergencyContact) {

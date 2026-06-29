@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.elifoksas.earthquake.data.entity.Result
 import com.elifoksas.earthquake.databinding.EarthquakeItemBinding
+import com.elifoksas.earthquake.ui.DistanceFormatter
 import com.elifoksas.earthquake.ui.MagnitudeStyle
+import com.elifoksas.earthquake.ui.preference.SettingsPreferences
 import com.google.android.gms.maps.model.LatLng
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -17,7 +19,8 @@ class EarthquakeAdapter(
     private val mContext: Context,
     private val earthquakeList: List<Result>,
     private val listener: OnItemClickListener,
-    private var userLocation: LatLng? = null
+    private var userLocation: LatLng? = null,
+    private val distanceUnit: String = SettingsPreferences.DEFAULT_DISTANCE_UNIT
 ) : RecyclerView.Adapter<EarthquakeAdapter.HomePageItemHolder>() {
 
     inner class HomePageItemHolder(var item: EarthquakeItemBinding) : RecyclerView.ViewHolder(item.root)
@@ -106,7 +109,7 @@ class EarthquakeAdapter(
             distanceResult
         )
 
-        return "${(distanceResult[0] / 1000).toLong()} km"
+        return DistanceFormatter.format(distanceResult[0] / 1000.0, distanceUnit)
     }
 
     private fun parseApiDate(dateTime: String): Date? {
