@@ -72,8 +72,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var selectedEarthquake: Result? = null
     private lateinit var detailSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private var compactDragStartY = 0f
+    private var compactDragHasExpanded = false
     private var isDetailHeaderMagnitudeVisible = false
     private var lastDetailSheetSlideOffset = -1f
+    private var isExpandingDetailSheet = false
 
     private val locationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -92,6 +94,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         private const val COMPACT_EXPAND_DRAG_THRESHOLD_DP = 24
         private const val DETAIL_SHEET_PEEK_HEIGHT_DP = 92
         private const val DETAIL_HEADER_MAG_SLIDE_THRESHOLD = 0.92f
+        private const val DETAIL_EXPAND_SNAP_THRESHOLD = 0.68f
+        private const val DETAIL_SETTLE_SNAP_DELAY_MS = 180L
+        private const val COMPACT_EXPAND_CONFIRM_DELAY_MS = 260L
         private const val DETAIL_HEADER_MAG_ANIMATION_DURATION_MS = 260L
         private val TURKEY_LAT_LNG = LatLng(39.9334, 32.8597)
     }
@@ -138,6 +143,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         detailSheetBehavior = BottomSheetBehavior.from(binding.earthquakeDetailsLayout)
         detailSheetBehavior.isHideable = true
         detailSheetBehavior.skipCollapsed = false
+        detailSheetBehavior.isFitToContents = true
         detailSheetBehavior.peekHeight = dpToPx(DETAIL_SHEET_PEEK_HEIGHT_DP)
         detailSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         detailSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -146,6 +152,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
                 when (newState) {
                     BottomSheetBehavior.STATE_EXPANDED -> {
+                        isExpandingDetailSheet = false
                         lastDetailSheetSlideOffset = 1f
                         setDetailHeaderMagnitudeVisible(visible = false, animate = true)
                         focusEarthquakeOnMap(earthquake)
@@ -153,8 +160,22 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
                     BottomSheetBehavior.STATE_COLLAPSED,
                     BottomSheetBehavior.STATE_HIDDEN -> {
+                        isExpandingDetailSheet = false
                         lastDetailSheetSlideOffset = 0f
                         showCompactDetails()
+                    }
+
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                        snapDetailSheetAfterRelease()
+                    }
+
+                    BottomSheetBehavior.STATE_DRAGGING,
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                        bottomSheet.removeCallbacks(::snapDetailSheetAfterRelease)
+                        bottomSheet.postDelayed(
+                            ::snapDetailSheetAfterRelease,
+                            DETAIL_SETTLE_SNAP_DELAY_MS
+                        )
                     }
                 }
             }
@@ -168,6 +189,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                     visible = isDraggingTowardCompactHeader,
                     animate = true
                 )
+                updateCompactDetailsPreview(slideOffset)
                 lastDetailSheetSlideOffset = slideOffset
             }
         })
@@ -183,6 +205,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding.compactDetailsBar.setOnClickListener {
             expandCompactDetails()
         }
+        binding.compactDetailsBar.alpha = 0f
 
         setupCompactDetailsDrag()
 
@@ -206,23 +229,37 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 when (event.actionMasked) {
                     MotionEvent.ACTION_DOWN -> {
                         compactDragStartY = event.rawY
-                        false
+                        compactDragHasExpanded = false
+                        view.parent.requestDisallowInterceptTouchEvent(true)
+                        true
                     }
 
                     MotionEvent.ACTION_MOVE -> {
                         val dragDistance = compactDragStartY - event.rawY
-                        if (dragDistance > dpToPx(COMPACT_EXPAND_DRAG_THRESHOLD_DP)) {
+                        if (!compactDragHasExpanded &&
+                            dragDistance > dpToPx(COMPACT_EXPAND_DRAG_THRESHOLD_DP)
+                        ) {
+                            compactDragHasExpanded = true
                             expandCompactDetails()
-                            true
-                        } else {
-                            false
                         }
+                        true
                     }
 
-                    MotionEvent.ACTION_UP,
+                    MotionEvent.ACTION_UP -> {
+                        if (!compactDragHasExpanded) {
+                            expandCompactDetails()
+                        }
+                        compactDragStartY = 0f
+                        compactDragHasExpanded = false
+                        view.parent.requestDisallowInterceptTouchEvent(false)
+                        true
+                    }
+
                     MotionEvent.ACTION_CANCEL -> {
                         compactDragStartY = 0f
-                        false
+                        compactDragHasExpanded = false
+                        view.parent.requestDisallowInterceptTouchEvent(false)
+                        true
                     }
 
                     else -> false
@@ -298,18 +335,22 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     private fun applyMagnitudeFilter() {
         val minMagnitude = getSelectedMinimumMagnitude()
-        val maximumDistanceKm = preferences.getInt(
-            SettingsPreferences.DISTANCE_RANGE_KEY,
-            SettingsPreferences.DEFAULT_DISTANCE_RANGE_KM
+        val maximumDistanceKm = SettingsPreferences.normalizeDistanceRange(
+            preferences.getInt(
+                SettingsPreferences.DISTANCE_RANGE_KEY,
+                SettingsPreferences.DEFAULT_DISTANCE_RANGE_KM
+            )
         )
-        val maximumDepthKm = preferences.getInt(
-            SettingsPreferences.DEPTH_RANGE_KEY,
-            SettingsPreferences.DEFAULT_DEPTH_RANGE_KM
+        val maximumDepthKm = SettingsPreferences.normalizeDepthRange(
+            preferences.getInt(
+                SettingsPreferences.DEPTH_RANGE_KEY,
+                SettingsPreferences.DEFAULT_DEPTH_RANGE_KM
+            )
         )
         val currentLocation = userLocation?.let {
             EarthquakeFilter.Coordinates(latitude = it.latitude, longitude = it.longitude)
         }
-        filteredEarthquakes = EarthquakeFilter.applyKeepingListVisible(
+        filteredEarthquakes = EarthquakeFilter.apply(
             earthquakes = allEarthquakes,
             minimumMagnitude = minMagnitude,
             maximumDistanceKm = maximumDistanceKm,
@@ -330,6 +371,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 selectedDistanceUnit()
             )
             binding.recyclerView.adapter = earthquakeAdapter
+            updateEmptyState()
         }
 
         renderFilteredEarthquakes()
@@ -363,8 +405,27 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             marker?.tag = earthquake
         }
 
-        if (binding.recyclerView.visibility == View.VISIBLE) {
+        if (binding.recyclerView.visibility == View.VISIBLE ||
+            binding.emptyStateContainer.visibility == View.VISIBLE
+        ) {
             focusEarthquakeListOnMap(markerLocations)
+        }
+    }
+
+    private fun updateEmptyState() {
+        val shouldShowEmptyState = selectedEarthquake == null && filteredEarthquakes.isEmpty()
+
+        binding.recyclerView.visibility = if (shouldShowEmptyState) View.GONE else View.VISIBLE
+        binding.emptyStateContainer.visibility = if (shouldShowEmptyState) View.VISIBLE else View.GONE
+
+        if (!shouldShowEmptyState) return
+
+        if (allEarthquakes.isEmpty()) {
+            binding.emptyStateTitle.setText(R.string.home_empty_data_title)
+            binding.emptyStateMessage.setText(R.string.home_empty_data_message)
+        } else {
+            binding.emptyStateTitle.setText(R.string.home_empty_filtered_title)
+            binding.emptyStateMessage.setText(R.string.home_empty_filtered_message)
         }
     }
 
@@ -408,9 +469,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         setDetailHeaderMagnitudeVisible(visible = false, animate = false)
 
         binding.recyclerView.visibility = View.GONE
+        binding.emptyStateContainer.visibility = View.GONE
         binding.compactDetailsBar.visibility = View.GONE
+        binding.compactDetailsBar.alpha = 0f
         binding.earthquakeDetailsLayout.visibility = View.VISIBLE
         binding.earthquakeDetailsLayout.post {
+            isExpandingDetailSheet = true
             detailSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             focusEarthquakeOnMap(item)
         }
@@ -421,7 +485,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         detailSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         binding.earthquakeDetailsLayout.visibility = View.INVISIBLE
         binding.compactDetailsBar.visibility = View.GONE
-        binding.recyclerView.visibility = View.VISIBLE
+        binding.compactDetailsBar.alpha = 0f
+        updateEmptyState()
         focusEarthquakeListOnMap(getFilteredEarthquakeLocations())
     }
 
@@ -430,12 +495,15 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
         binding.earthquakeDetailsLayout.visibility = View.INVISIBLE
         binding.compactDetailsBar.visibility = View.VISIBLE
+        binding.compactDetailsBar.alpha = 1f
         selectedEarthquake?.let { focusEarthquakeOnMap(it) }
     }
 
     private fun expandCompactDetails() {
         val earthquake = selectedEarthquake ?: return
 
+        isExpandingDetailSheet = true
+        binding.compactDetailsBar.alpha = 0f
         binding.compactDetailsBar.visibility = View.GONE
         binding.earthquakeDetailsLayout.visibility = View.VISIBLE
         lastDetailSheetSlideOffset = 0f
@@ -443,6 +511,56 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         binding.earthquakeDetailsLayout.post {
             detailSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             focusEarthquakeOnMap(earthquake)
+        }
+        binding.earthquakeDetailsLayout.postDelayed({
+            if (selectedEarthquake != null &&
+                binding.earthquakeDetailsLayout.visibility == View.VISIBLE &&
+                isExpandingDetailSheet
+            ) {
+                detailSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            }
+        }, COMPACT_EXPAND_CONFIRM_DELAY_MS)
+    }
+
+    private fun updateCompactDetailsPreview(slideOffset: Float) {
+        if (selectedEarthquake == null || binding.earthquakeDetailsLayout.visibility != View.VISIBLE) {
+            return
+        }
+
+        val previewAlpha = ((DETAIL_HEADER_MAG_SLIDE_THRESHOLD - slideOffset) /
+            DETAIL_HEADER_MAG_SLIDE_THRESHOLD).coerceIn(0f, 1f)
+
+        if (previewAlpha > 0f) {
+            if (binding.compactDetailsBar.visibility != View.VISIBLE) {
+                binding.compactDetailsBar.visibility = View.VISIBLE
+            }
+            binding.compactDetailsBar.alpha = previewAlpha
+        } else if (binding.compactDetailsBar.visibility == View.VISIBLE) {
+            binding.compactDetailsBar.alpha = 0f
+            binding.compactDetailsBar.visibility = View.GONE
+        }
+    }
+
+    private fun snapDetailSheetAfterRelease() {
+        if (selectedEarthquake == null || binding.earthquakeDetailsLayout.visibility != View.VISIBLE) {
+            return
+        }
+
+        val currentState = detailSheetBehavior.state
+        if (currentState == BottomSheetBehavior.STATE_EXPANDED ||
+            currentState == BottomSheetBehavior.STATE_COLLAPSED ||
+            currentState == BottomSheetBehavior.STATE_HIDDEN
+        ) {
+            return
+        }
+
+        val shouldExpand = isExpandingDetailSheet ||
+            lastDetailSheetSlideOffset >= DETAIL_EXPAND_SNAP_THRESHOLD
+
+        detailSheetBehavior.state = if (shouldExpand) {
+            BottomSheetBehavior.STATE_EXPANDED
+        } else {
+            BottomSheetBehavior.STATE_COLLAPSED
         }
     }
 
@@ -546,7 +664,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         val minVisibleMapHeight = dpToPx(MIN_VISIBLE_MAP_HEIGHT_DP)
         val maxBottomPadding = (rootHeight - minVisibleMapHeight).coerceAtLeast(0)
         val visibleSheetHeight = when {
-            binding.compactDetailsBar.visibility == View.VISIBLE -> binding.compactDetailsBar.height
+            binding.compactDetailsBar.visibility == View.VISIBLE -> dpToPx(DETAIL_SHEET_PEEK_HEIGHT_DP)
             binding.earthquakeDetailsLayout.visibility == View.VISIBLE -> binding.earthquakeDetailsLayout.height
             else -> 0
         }

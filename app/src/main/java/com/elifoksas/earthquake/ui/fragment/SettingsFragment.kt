@@ -118,7 +118,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupDistanceRangePreference() {
-        binding.distanceRangeSeekBar.max = DISTANCE_RANGES_KM.lastIndex
+        binding.distanceRangeSeekBar.max = DISTANCE_ALL_PROGRESS
         binding.distanceRangeSeekBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
@@ -126,7 +126,7 @@ class SettingsFragment : Fragment() {
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                    val selectedValue = DISTANCE_RANGES_KM[progress.coerceIn(0, DISTANCE_RANGES_KM.lastIndex)]
+                    val selectedValue = distanceRangeValueForProgress(progress)
                     updateDistanceRangeText(selectedValue)
                     if (fromUser) {
                         preferences.edit()
@@ -143,7 +143,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupDepthRangePreference() {
-        binding.depthRangeSeekBar.max = DEPTH_RANGES_KM.lastIndex
+        binding.depthRangeSeekBar.max = DEPTH_ALL_PROGRESS
         binding.depthRangeSeekBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
@@ -151,7 +151,7 @@ class SettingsFragment : Fragment() {
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                    val selectedValue = DEPTH_RANGES_KM[progress.coerceIn(0, DEPTH_RANGES_KM.lastIndex)]
+                    val selectedValue = depthRangeValueForProgress(progress)
                     updateDepthRangeText(selectedValue)
                     if (fromUser) {
                         preferences.edit()
@@ -290,9 +290,11 @@ class SettingsFragment : Fragment() {
     }
 
     private fun updateDistanceRangeText(valueOverride: Int? = null) {
-        val value = valueOverride ?: preferences.getInt(
-            SettingsPreferences.DISTANCE_RANGE_KEY,
-            SettingsPreferences.DEFAULT_DISTANCE_RANGE_KM
+        val value = normalizeDistanceRange(
+            valueOverride ?: preferences.getInt(
+                SettingsPreferences.DISTANCE_RANGE_KEY,
+                SettingsPreferences.DEFAULT_DISTANCE_RANGE_KM
+            )
         )
         val displayValue = if (value == SettingsPreferences.ALL_RANGES) {
             getString(R.string.settings_all)
@@ -302,7 +304,7 @@ class SettingsFragment : Fragment() {
 
         binding.distanceRangeSeekBar.progress = distanceRangeProgressFor(value)
         binding.distanceRangeMinLabel.text = DistanceFormatter.format(
-            DISTANCE_RANGES_KM.first().toDouble(),
+            SettingsPreferences.MIN_DISTANCE_RANGE_KM.toDouble(),
             selectedDistanceUnit()
         )
         binding.distanceRangeMaxLabel.text = getString(R.string.settings_all)
@@ -319,15 +321,18 @@ class SettingsFragment : Fragment() {
     }
 
     private fun distanceRangeProgressFor(value: Int): Int {
-        return DISTANCE_RANGES_KM.indexOf(value).takeIf { it >= 0 }
-            ?: DISTANCE_RANGES_KM.indexOf(SettingsPreferences.DEFAULT_DISTANCE_RANGE_KM)
-                .coerceAtLeast(0)
+        if (value == SettingsPreferences.ALL_RANGES) return DISTANCE_ALL_PROGRESS
+        return (SettingsPreferences.normalizeDistanceRange(value) -
+            SettingsPreferences.MIN_DISTANCE_RANGE_KM)
+            .coerceIn(0, DISTANCE_ALL_PROGRESS)
     }
 
     private fun updateDepthRangeText(valueOverride: Int? = null) {
-        val value = valueOverride ?: preferences.getInt(
-            SettingsPreferences.DEPTH_RANGE_KEY,
-            SettingsPreferences.DEFAULT_DEPTH_RANGE_KM
+        val value = normalizeDepthRange(
+            valueOverride ?: preferences.getInt(
+                SettingsPreferences.DEPTH_RANGE_KEY,
+                SettingsPreferences.DEFAULT_DEPTH_RANGE_KM
+            )
         )
         val displayValue = if (value == SettingsPreferences.ALL_RANGES) {
             getString(R.string.settings_all)
@@ -338,7 +343,7 @@ class SettingsFragment : Fragment() {
         binding.depthRangeSeekBar.progress = depthRangeProgressFor(value)
         binding.depthRangeMinLabel.text = getString(
             R.string.settings_depth_kilometers,
-            DEPTH_RANGES_KM.first()
+            SettingsPreferences.MIN_DEPTH_RANGE_KM
         )
         binding.depthRangeMaxLabel.text = getString(R.string.settings_all)
         binding.depthRangeValue.text = displayValue
@@ -350,9 +355,36 @@ class SettingsFragment : Fragment() {
     }
 
     private fun depthRangeProgressFor(value: Int): Int {
-        return DEPTH_RANGES_KM.indexOf(value).takeIf { it >= 0 }
-            ?: DEPTH_RANGES_KM.indexOf(SettingsPreferences.DEFAULT_DEPTH_RANGE_KM)
-                .coerceAtLeast(0)
+        if (value == SettingsPreferences.ALL_RANGES) return DEPTH_ALL_PROGRESS
+        return (SettingsPreferences.normalizeDepthRange(value) -
+            SettingsPreferences.MIN_DEPTH_RANGE_KM)
+            .coerceIn(0, DEPTH_ALL_PROGRESS)
+    }
+
+    private fun distanceRangeValueForProgress(progress: Int): Int {
+        val boundedProgress = progress.coerceIn(0, DISTANCE_ALL_PROGRESS)
+        return if (boundedProgress == DISTANCE_ALL_PROGRESS) {
+            SettingsPreferences.ALL_RANGES
+        } else {
+            SettingsPreferences.MIN_DISTANCE_RANGE_KM + boundedProgress
+        }
+    }
+
+    private fun depthRangeValueForProgress(progress: Int): Int {
+        val boundedProgress = progress.coerceIn(0, DEPTH_ALL_PROGRESS)
+        return if (boundedProgress == DEPTH_ALL_PROGRESS) {
+            SettingsPreferences.ALL_RANGES
+        } else {
+            SettingsPreferences.MIN_DEPTH_RANGE_KM + boundedProgress
+        }
+    }
+
+    private fun normalizeDistanceRange(value: Int): Int {
+        return SettingsPreferences.normalizeDistanceRange(value)
+    }
+
+    private fun normalizeDepthRange(value: Int): Int {
+        return SettingsPreferences.normalizeDepthRange(value)
     }
 
     private fun updateQuietHoursText() {
@@ -493,7 +525,9 @@ class SettingsFragment : Fragment() {
     companion object {
         private const val MIN_MAGNITUDE = 10
         private const val MAX_MAGNITUDE = 100
-        private val DISTANCE_RANGES_KM = listOf(25, 50, 100, 250, 500, 1000, 1500, -1)
-        private val DEPTH_RANGES_KM = listOf(10, 30, 50, 100, 300, -1)
+        private const val DISTANCE_ALL_PROGRESS =
+            SettingsPreferences.MAX_DISTANCE_RANGE_KM - SettingsPreferences.MIN_DISTANCE_RANGE_KM + 1
+        private const val DEPTH_ALL_PROGRESS =
+            SettingsPreferences.MAX_DEPTH_RANGE_KM - SettingsPreferences.MIN_DEPTH_RANGE_KM + 1
     }
 }

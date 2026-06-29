@@ -8,10 +8,10 @@
     android:clipToPadding="false"
     android:fillViewport="true"
     android:overScrollMode="never"
-    android:paddingStart="20dp"
+    android:paddingStart="8dp"
     android:paddingTop="20dp"
-    android:paddingEnd="20dp"
-    android:paddingBottom="20dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="84dp"
     tools:context=".ui.fragment.SettingsFragment">
 
     <LinearLayout
@@ -22,6 +22,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
             android:includeFontPadding="false"
             android:text="@string/Settings"
             android:textColor="@color/earthquake_text_primary"
@@ -31,15 +33,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
             android:includeFontPadding="false"
             android:text="@string/settings_subtitle"
             android:textColor="@color/earthquake_text_secondary"
             android:textSize="14sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/earthquake_stroke" />
+
         <TextView
             style="@style/SettingsSectionLabel"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="24dp"
             android:text="@string/settings_section_filter" />
 
         <LinearLayout
@@ -207,8 +219,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:max="5"
-                    android:progress="2"
+                    android:max="1491"
+                    android:progress="90"
                     android:progressBackgroundTint="@color/earthquake_stroke"
                     android:progressTint="@color/earthquake_accent"
                     android:splitTrack="false"
@@ -225,7 +237,7 @@
                         style="@style/SettingsRangeLabel"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        tools:text="25 km" />
+                        tools:text="10 km" />
 
                     <TextView
                         android:id="@+id/distanceRangeMaxLabel"
@@ -309,8 +321,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:max="5"
-                    android:progress="4"
+                    android:max="300"
+                    android:progress="299"
                     android:progressBackgroundTint="@color/earthquake_stroke"
                     android:progressTint="@color/earthquake_accent"
                     android:splitTrack="false"
@@ -327,7 +339,7 @@
                         style="@style/SettingsRangeLabel"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        tools:text="10 km" />
+                        tools:text="1 km" />
 
                     <TextView
                         android:id="@+id/depthRangeMaxLabel"

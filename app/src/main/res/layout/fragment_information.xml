@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingStart="20dp"
+    android:paddingStart="8dp"
     android:paddingTop="16dp"
-    android:paddingEnd="20dp"
+    android:paddingEnd="8dp"
     tools:context=".ui.fragment.InformationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -130,7 +130,7 @@
         android:layout_marginTop="12dp"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingBottom="20dp"
+        android:paddingBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

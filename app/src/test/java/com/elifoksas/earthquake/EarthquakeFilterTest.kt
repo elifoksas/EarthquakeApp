@@ -41,11 +41,11 @@ class EarthquakeFilterTest {
     }
 
     @Test
-    fun keepsMagnitudeAndDepthResultsVisibleWhenDistanceWouldHideEverything() {
+    fun hidesResultsOutsideDistanceRangeWhenLocationIsAvailable() {
         val far = earthquake("far", 4.0, 20.0, 39.0, 32.0)
         val deep = earthquake("deep", 4.0, 400.0, 39.0, 32.0)
 
-        val result = EarthquakeFilter.applyKeepingListVisible(
+        val result = EarthquakeFilter.apply(
             earthquakes = listOf(far, deep),
             minimumMagnitude = 2.5,
             maximumDistanceKm = 25,
@@ -53,7 +53,7 @@ class EarthquakeFilterTest {
             userCoordinates = EarthquakeFilter.Coordinates(41.0, 29.0)
         )
 
-        assertEquals(listOf("far"), result.map { it.title })
+        assertEquals(emptyList<String>(), result.map { it.title })
     }
 
     private fun earthquake(

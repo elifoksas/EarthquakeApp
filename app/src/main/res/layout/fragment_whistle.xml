@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingStart="20dp"
+    android:paddingStart="8dp"
     android:paddingTop="16dp"
-    android:paddingEnd="20dp"
-    android:paddingBottom="20dp"
+    android:paddingEnd="8dp"
     tools:context=".ui.fragment.WhistleFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -196,7 +195,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="96dp"
         android:background="@drawable/whistle_card_background"
         android:minHeight="88dp"
         android:padding="16dp"

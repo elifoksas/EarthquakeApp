@@ -23,34 +23,6 @@ object EarthquakeFilter {
         }
     }
 
-    fun applyKeepingListVisible(
-        earthquakes: List<Result>,
-        minimumMagnitude: Double,
-        maximumDistanceKm: Int,
-        maximumDepthKm: Int,
-        userCoordinates: Coordinates?
-    ): List<Result> {
-        val filtered = apply(
-            earthquakes = earthquakes,
-            minimumMagnitude = minimumMagnitude,
-            maximumDistanceKm = maximumDistanceKm,
-            maximumDepthKm = maximumDepthKm,
-            userCoordinates = userCoordinates
-        )
-
-        if (filtered.isNotEmpty() || maximumDistanceKm == -1 || userCoordinates == null) {
-            return filtered
-        }
-
-        return apply(
-            earthquakes = earthquakes,
-            minimumMagnitude = minimumMagnitude,
-            maximumDistanceKm = -1,
-            maximumDepthKm = maximumDepthKm,
-            userCoordinates = userCoordinates
-        )
-    }
-
     private fun matchesMagnitude(earthquake: Result, minimumMagnitude: Double): Boolean {
         return (earthquake.mag ?: 0.0) >= minimumMagnitude
     }

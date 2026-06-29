@@ -9,11 +9,15 @@ object SettingsPreferences {
 
     const val DISTANCE_RANGE_KEY = "DistanceRangeKm"
     const val DEFAULT_DISTANCE_RANGE_KM = -1
+    const val MIN_DISTANCE_RANGE_KM = 1
+    const val MAX_DISTANCE_RANGE_KM = 1500
     private const val DISTANCE_RANGE_DEFAULT_VERSION_KEY = "DistanceRangeDefaultVersion"
     private const val DISTANCE_RANGE_DEFAULT_VERSION = 2
 
     const val DEPTH_RANGE_KEY = "DepthRangeKm"
     const val DEFAULT_DEPTH_RANGE_KM = -1
+    const val MIN_DEPTH_RANGE_KM = 1
+    const val MAX_DEPTH_RANGE_KM = 300
     private const val DEPTH_RANGE_DEFAULT_VERSION_KEY = "DepthRangeDefaultVersion"
     private const val DEPTH_RANGE_DEFAULT_VERSION = 2
 
@@ -29,6 +33,16 @@ object SettingsPreferences {
     const val DEFAULT_QUIET_HOURS_END_MINUTES = 7 * 60
 
     const val ALL_RANGES = -1
+
+    fun normalizeDistanceRange(value: Int): Int {
+        if (value == ALL_RANGES) return value
+        return value.coerceIn(MIN_DISTANCE_RANGE_KM, MAX_DISTANCE_RANGE_KM)
+    }
+
+    fun normalizeDepthRange(value: Int): Int {
+        if (value == ALL_RANGES) return value
+        return value.coerceIn(MIN_DEPTH_RANGE_KM, MAX_DEPTH_RANGE_KM)
+    }
 
     fun migrateRangeDefaults(preferences: SharedPreferences) {
         migrateRangeDefault(

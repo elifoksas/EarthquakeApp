@@ -2,6 +2,10 @@
     <string name="app_name">EarthquakeApp</string>
     <string name="Earthquakes">Earthquakes</string>
     <string name="Emergency">Emergency</string>
+    <string name="home_empty_filtered_title">No earthquakes found</string>
+    <string name="home_empty_filtered_message">There are no earthquakes matching your current filters. Try widening the distance, depth, or magnitude range.</string>
+    <string name="home_empty_data_title">No earthquake data available</string>
+    <string name="home_empty_data_message">Earthquake data could not be displayed right now. Please check again in a moment.</string>
 
     <!-- Emergency Tools Strings -->
     <string name="emergency_tools_title">Emergency Tools</string>
